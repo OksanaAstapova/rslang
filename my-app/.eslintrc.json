@@ -1,0 +1,26 @@
+{
+    "parser": "@typescript-eslint/parser",//1
+    "plugins": ["prettier", "import", "@typescript-eslint"],//2
+    "extends": [
+        "plugin:prettier/recommended",
+        "prettier",
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+        //,"airbnb-base"//3
+    ],
+    "parserOptions": {
+        "ecmaVersion": 2020,
+        "sourceType": "module"
+    },
+    "env": {
+        "es6": true,
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "no-debugger": "off",
+        "no-console": 0,
+        "class-methods-use-this": "off",
+        "@typescript-eslint/no-explicit-any": 2
+    }
+}
