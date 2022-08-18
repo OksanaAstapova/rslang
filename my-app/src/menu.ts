@@ -7,7 +7,14 @@ export const menu = `
     <li class="nav-item"><a href="#" class="nav-link game-audio">Игра:Аудиовызов</a></li>
     <li class="nav-item"><a href="#" class="nav-link game-sprint">Игра:Спринт</a></li>
   </ul>
-</nav>`;
+</nav>
+
+<div class="autorize">
+<button class="button login">Login</button>
+<button class="button logout">Logout</button>
+</div>
+
+`;
 
 // .description {
 // класс хелпер для описания проекта
