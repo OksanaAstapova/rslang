@@ -12,3 +12,12 @@ export function createHtmlElement(
   element.innerHTML = text;
   return element;
 }
+
+export const createImage = (src: string, className: string) =>
+  new Promise((res, rej) => {
+    const img = new Image();
+    img.onload = () => res(img);
+    img.onerror = rej;
+    img.src = src;
+    img.className = className;
+  });

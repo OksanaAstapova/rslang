@@ -1,15 +1,8 @@
 import image from "./images/love.jpg";
 import { menu as navigation } from "./menu";
+import * as helpers from "./helpers";
 
-const createImage = (src: string) =>
-  new Promise((res, rej) => {
-    const img = new Image();
-    img.onload = () => res(img);
-    img.onerror = rej;
-    img.src = src;
-  });
-
-async function render() {
+export async function render() {
   const header = document.createElement("header");
   header.className = "header";
   const headerContainer = document.createElement("div");
@@ -31,7 +24,7 @@ async function render() {
 
   const subHeader = document.createElement("h2");
   subHeader.innerHTML = "RS-Lang App Team-181";
-  const myImage = await createImage(image);
+  const myImage = await helpers.createImage(image, "image-0");
 
   document.body.prepend(header);
   document.body.append(main);
@@ -41,4 +34,29 @@ async function render() {
   document.body.append(footer);
 }
 
-render();
+render()
+  .then(() => {
+    const header = document.body.querySelector(".header");
+    console.log("header ->", header);
+    (header as HTMLElement).addEventListener("click", (e) => {
+      const target = e.target as HTMLElement;
+      if (target.classList.contains("description")) {
+        console.log("description");
+      }
+      if (target.classList.contains("our-team")) {
+        console.log("our-team");
+      }
+      if (target.classList.contains("workbook")) {
+        console.log("workbook");
+      }
+      if (target.classList.contains("game-audio")) {
+        console.log("game-audio");
+      }
+      if (target.classList.contains("game-sprint")) {
+        console.log("game-sprint");
+      }
+    });
+  })
+  .catch((err) => {
+    console.log("Error happend! ->", err);
+  });

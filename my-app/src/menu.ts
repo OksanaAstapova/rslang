@@ -13,7 +13,6 @@ export const menu = `
 <button class="button login">Login</button>
 <button class="button logout">Logout</button>
 </div>
-
 `;
 
 // .description {
