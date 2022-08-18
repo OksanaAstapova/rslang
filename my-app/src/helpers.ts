@@ -1,6 +1,6 @@
 import { menu as navigation } from "./menu";
 import image from "./images/love.jpg";
-
+//-------------------------------------------------------------------------------------------------------------------------------
 export function createHtmlElement(
   tagName: string,
   className: string | Array<string>, // на входе может быть массив классов или один класс
@@ -15,7 +15,7 @@ export function createHtmlElement(
   element.innerHTML = text;
   return element;
 }
-
+//---------------------------------------------------------------------------------------------------------------------------------------
 export const createImage = (src: string, className: string) =>
   new Promise((res, rej) => {
     const img = new Image();
@@ -24,7 +24,7 @@ export const createImage = (src: string, className: string) =>
     img.src = src;
     img.className = className;
   });
-
+//---------------------------------------------------------------------------------------------------------------------------------------
 export async function render() {
   const header = document.createElement("header");
   header.className = "header";
@@ -57,3 +57,4 @@ export async function render() {
   mainContainer.append(myImage as HTMLImageElement);
   document.body.append(footer);
 }
+//---------------------------------------------------------------------------------------------------------------------------------------

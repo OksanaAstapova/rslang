@@ -13,8 +13,6 @@ helpers
   .then(async () => {
     const header = document.body.querySelector(".header");
     const main = document.body.querySelector(".main");
-    console.log("header ->", header);
-    console.log("main ->", main);
     (header as HTMLElement).addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
       if (target.classList.contains("description")) {
