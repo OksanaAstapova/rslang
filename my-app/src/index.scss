@@ -44,6 +44,7 @@ $font-color: $amber-sae-ece;
 }
 // ---  MIXINS - finish --------------------------------
 
+// ---  BASIC PAGE STRUCTURE - start ------------------------------
 html, body {
   @include flex-all-centerd_columns;
   height: 100%;
@@ -84,7 +85,10 @@ img {
   width: 90vw;
   max-width: 500px;
 }
+// ---  BASIC PAGE STRUCTURE - finish ------------------------------
 
+
+//--- NAVBAR - start ---------------------------------
 .navbar {
   @include flex-space-between_rows;
   background-color: $background-color;
@@ -112,7 +116,10 @@ img {
     // box-shadow: 1px 1px 1px 1px $font-color;
   }
 }
+//--- NAVBAR - finish ---------------------------------
 
+
+// --- LOGIN-LOGOUT SECTION - start -------------------
 .autorize {
   @include flex-space-between_rows;
   background-color: $background-color;
@@ -131,3 +138,4 @@ img {
   background-color: $tertiary-color;
   color: $font-color;
 }
+// --- LOGIN-LOGOUT SECTION - finish -------------------
