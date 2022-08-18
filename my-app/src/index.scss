@@ -1,20 +1,32 @@
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-transform: uppercase;
-  background-color: #363636;
-}
+// --- BULMA-import - start -------------------
+@charset "utf-8";
+@import "../node_modules/bulma/bulma.sass";
+// https://bulma.io/documentation/elements/button/
+// --- BULMA - finish -------------------------
 
-h1 { color: #e6c300; }
-
-img {
-  width: 90vw;
-  max-width: 256px;
-}
+// ---- COLORS - start ---------------------------------
+/* SCSS HEX */
+$rich-black-fogra-29: #001524ff;
+$ming: #15616dff;
+$blanched-almond: #ffecd1ff;
+$amber-sae-ece: #ff7d00ff;
+$kobe: #78290fff;
+/* SCSS Gradient */
+$gradient-top: linear-gradient(0deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-right: linear-gradient(90deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-bottom: linear-gradient(180deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-left: linear-gradient(270deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-top-right: linear-gradient(45deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-bottom-right: linear-gradient(135deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-top-left: linear-gradient(225deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-bottom-left: linear-gradient(315deg, #001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+$gradient-radial: radial-gradient(#001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #78290fff);
+/* custom colours*/
+$background-color: $rich-black-fogra-29;
+$primary-color: $blanched-almond;
+$secondary-color: $ming;
+$font-color: $amber-sae-ece;
+// ---- COLORS - finish --------------------------------
 
 // ---  MIXINS - start ---------------------------------
 @mixin flex-all-centerd_columns {
@@ -31,17 +43,15 @@ img {
 }
 // ---  MIXINS - finish --------------------------------
 
-// ---- COLORS - start ---------------------------------
-// ---- COLORS - finish --------------------------------
-
 html, body {
+  @include flex-all-centerd_columns;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: $background-color;
+  color: $font-color;
 }
-
-
 
 .container {
  @include flex-all-centerd_columns;
@@ -54,6 +64,7 @@ html, body {
 
 .header {
   @include flex-space-between_rows;
+  background-color: $background-color;
   margin-bottom: 20px;
 }
 
@@ -64,5 +75,11 @@ html, body {
 
 .footer {
   @include flex-space-between_rows;
+  background-color: $background-color;
   margin-top: 20px;
+}
+
+img {
+  width: 90vw;
+  max-width: 500px;
 }

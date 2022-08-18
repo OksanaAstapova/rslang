@@ -36,7 +36,7 @@ async function render() {
   mainContainer.append(subHeader);
   // mainContainer.appendChild(myImage as any);
   mainContainer.append(myImage as HTMLImageElement);
-  document.body.appendChild(footer);
+  document.body.append(footer);
 }
 
 render();
