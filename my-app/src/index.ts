@@ -1,5 +1,5 @@
-import image from "./images/love.jpg";
-import { menu as navigation } from "./menu";
+// import image from "./images/love.jpg";
+// import { menu as navigation } from "./menu";
 import * as helpers from "./helpers";
 import * as team from "./our_team";
 import * as description from "./description";
@@ -8,39 +8,8 @@ import * as audio from "./game_audio";
 import * as sprint from "./game_sprint";
 import * as stata from "./statistics";
 
-export async function render() {
-  const header = document.createElement("header");
-  header.className = "header";
-  const headerContainer = document.createElement("div");
-  headerContainer.className = "container";
-  header.append(headerContainer);
-  headerContainer.innerHTML = navigation;
-
-  const footer = document.createElement("footer");
-  footer.className = "footer";
-  const footerContainer = document.createElement("div");
-  footerContainer.className = "container";
-  footer.append(footerContainer);
-
-  const main = document.createElement("main");
-  main.className = "main";
-  const mainContainer = document.createElement("div");
-  mainContainer.className = "container";
-  main.append(mainContainer);
-
-  const subHeader = document.createElement("h2");
-  subHeader.innerHTML = "RS-Lang App Team-181";
-  const myImage = await helpers.createImage(image, "image-0");
-
-  document.body.prepend(header);
-  document.body.append(main);
-  mainContainer.append(subHeader);
-  // mainContainer.appendChild(myImage as any);
-  mainContainer.append(myImage as HTMLImageElement);
-  document.body.append(footer);
-}
-
-render()
+helpers
+  .render()
   .then(async () => {
     const header = document.body.querySelector(".header");
     const main = document.body.querySelector(".main");
