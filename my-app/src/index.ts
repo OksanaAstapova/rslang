@@ -1,4 +1,4 @@
-import image from "./images/love.jpg";
+/* import image from "./images/love.jpg";
 import { menu as navigation } from "./menu";
 
 const createImage = (src: string) =>
@@ -41,4 +41,8 @@ async function render() {
   document.body.append(footer);
 }
 
-render();
+render(); */
+
+import App from './ts/App'
+const aplication = new App();
+aplication.start();
