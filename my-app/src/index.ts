@@ -12,7 +12,7 @@ helpers
   .render()
   .then(async () => {
     const header = document.body.querySelector(".header");
-    const main = document.body.querySelector(".main");
+    const main = document.body.querySelector("main > .container");
     (header as HTMLElement).addEventListener("click", (e) => {
       const target = e.target as HTMLElement;
       if (target.classList.contains("description")) {
