@@ -55,6 +55,12 @@ render()
       if (target.classList.contains("game-sprint")) {
         console.log("game-sprint");
       }
+      if (target.classList.contains("login")) {
+        console.log("login");
+      }
+      if (target.classList.contains("logout")) {
+        console.log("logout");
+      }
     });
   })
   .catch((err) => {
