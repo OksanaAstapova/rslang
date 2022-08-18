@@ -83,3 +83,40 @@ img {
   width: 90vw;
   max-width: 500px;
 }
+
+a.navbar-item {
+  background-color: $background-color;
+  color: $font-color;
+  :hover {
+    background-color: $primary-color;
+    color: $background-color;
+  }
+}
+
+.navbar {
+  @include flex-space-between_rows;
+  background-color: $background-color;
+  // margin-bottom: 20px;
+  color: $font-color;
+}
+
+.nav-list {
+  @include flex-space-between_rows;
+  background-color: $background-color;
+  color: $font-color;
+  
+  .nav-item {  }
+
+  .nav-link {
+    color: $font-color;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  :hover {
+    color: $primary-color;
+    background-color: $secondary-color;
+    // box-shadow: 1px 1px 1px 1px $font-color;
+  }
+
+}

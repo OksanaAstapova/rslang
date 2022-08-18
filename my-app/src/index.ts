@@ -1,4 +1,5 @@
 import image from "./images/love.jpg";
+import { menu as navigation } from "./menu";
 
 const createImage = (src: string) =>
   new Promise((res, rej) => {
@@ -14,6 +15,7 @@ async function render() {
   const headerContainer = document.createElement("div");
   headerContainer.className = "container";
   header.append(headerContainer);
+  headerContainer.innerHTML = navigation;
 
   const footer = document.createElement("footer");
   footer.className = "footer";
