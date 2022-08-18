@@ -15,3 +15,54 @@ img {
   width: 90vw;
   max-width: 256px;
 }
+
+// ---  MIXINS - start ---------------------------------
+@mixin flex-all-centerd_columns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-space-between_rows {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+// ---  MIXINS - finish --------------------------------
+
+// ---- COLORS - start ---------------------------------
+// ---- COLORS - finish --------------------------------
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.container {
+ @include flex-all-centerd_columns;
+
+  width: 100vh;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  @include flex-space-between_rows;
+  margin-bottom: 20px;
+}
+
+.main {
+  @include flex-all-centerd_columns;
+  height: 100%;
+}
+
+.footer {
+  @include flex-space-between_rows;
+  margin-top: 20px;
+}
