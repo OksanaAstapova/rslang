@@ -22,7 +22,7 @@ const routes = [
   { path: '/', component: homePage },
   { path: 'about-team', component: aboutTeam },
   { path: 'game-audiocall', component: audiocall },
-  { path: 'book/1/1', component: book },
+  { path: 'book', component: book },
   { path: 'game-sprint', component: sprint },
   { path: 'statistics', component: statistics },
 ];

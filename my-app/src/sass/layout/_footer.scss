@@ -1,0 +1,12 @@
+.footer__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 75vw;
+}
+
+.footer__logo-image{
+    width: 150px;
+    filter: opacity(0.5) drop-shadow(0 0 0 rgb(252, 113, 21));
+}
+
