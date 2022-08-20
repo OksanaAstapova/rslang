@@ -26,6 +26,7 @@ $gradient-radial: radial-gradient(#001524ff, #15616dff, #ffecd1ff, #ff7d00ff, #7
 $background-color: $rich-black-fogra-29;
 $primary-color: $blanched-almond;
 $secondary-color: $ming;
+$tertiary-color: $kobe;
 $font-color: $amber-sae-ece;
 // ---- COLORS - finish --------------------------------
 
@@ -44,6 +45,7 @@ $font-color: $amber-sae-ece;
 }
 // ---  MIXINS - finish --------------------------------
 
+// ---  BASIC PAGE STRUCTURE - start ------------------------------
 html, body {
   @include flex-all-centerd_columns;
   height: 100%;
@@ -55,7 +57,7 @@ html, body {
 }
 
 .container {
- @include flex-all-centerd_columns;
+ @include flex-space-between_rows();
 
   width: 100vh;
   max-width: 1440px;
@@ -80,20 +82,14 @@ html, body {
   margin-top: 20px;
 }
 
-img {
+.image-0 { // удалить после отладки
   width: 90vw;
-  max-width: 500px;
+  max-width: 390px;
 }
+// ---  BASIC PAGE STRUCTURE - finish ------------------------------
 
-a.navbar-item {
-  background-color: $background-color;
-  color: $font-color;
-  :hover {
-    background-color: $primary-color;
-    color: $background-color;
-  }
-}
 
+//--- NAVBAR - start ---------------------------------
 .navbar {
   @include flex-space-between_rows;
   background-color: $background-color;
@@ -117,7 +113,67 @@ a.navbar-item {
   :hover {
     color: $primary-color;
     background-color: $secondary-color;
+    border-radius: 5px;
     // box-shadow: 1px 1px 1px 1px $font-color;
   }
-
 }
+//--- NAVBAR - finish ---------------------------------
+
+
+// --- LOGIN-LOGOUT SECTION - start -------------------
+.autorize {
+  @include flex-space-between_rows;
+  background-color: $background-color;
+  color: $font-color;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login {
+  @include flex-space-between_rows;
+  background-color: $secondary-color;
+  color: $font-color;
+}
+
+.logout {
+  background-color: $tertiary-color;
+  color: $font-color;
+}
+// --- LOGIN-LOGOUT SECTION - finish -------------------
+
+// ---TEAM SECTION - start ----------------------------
+.team-card {
+  @include flex-all-centerd_columns();
+  background-color: $background-color;
+  color: $font-color;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  width: 100vh;
+  max-width: 1440px;
+}
+
+.members-wrapper {
+  @include flex-space-between_rows();
+  width: 100vh;
+  max-width: 1440px;
+
+  // background-color: $background-color;
+  // color: $font-color;
+}
+
+.member-card{
+  @include flex-all-centerd_columns();
+  background-color: $secondary-color;
+  color: $font-color;
+  font-weight: 700;
+  height: 300px;
+  min-width: 200px;
+  border-radius: 10px;
+  box-shadow: 8px 8px  $font-color;
+  img {
+    border: 3px solid $font-color;
+  }
+}
+
+// ---TEAM SECTION - finish ---------------------------
