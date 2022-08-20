@@ -3,7 +3,8 @@
 @import "../node_modules/bulma/bulma.sass";
 // https://bulma.io/documentation/elements/button/
 // --- BULMA - finish -------------------------
-
+@import './sass/layout/header';
+@import './sass/layout/footer';
 // ---- COLORS - start ---------------------------------
 /* SCSS HEX */
 $rich-black-fogra-29: #001524ff;
@@ -101,7 +102,7 @@ html, body {
   background-color: $background-color;
   color: $font-color;
   
-  .nav-item {  }
+/*   .nav-item {  } */
 
   .nav-link {
     color: $font-color;

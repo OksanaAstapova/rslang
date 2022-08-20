@@ -1,0 +1,17 @@
+.header__contain{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+
+.header__logo-image{
+    width: 300px;
+}
+
+.navig__list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 60vw;
+    margin-top: 80px;
+}
