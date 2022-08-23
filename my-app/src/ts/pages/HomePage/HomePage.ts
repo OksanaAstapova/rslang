@@ -18,6 +18,7 @@ class HomePage extends Page {
     this.login();
     return conteinerHomePage;
   }
+
   login() {
     const buttonLogin = document.querySelector('.footer__button-login');
     const wrapperLogin = document.querySelector('.wrapper__login') as HTMLElement;
@@ -32,11 +33,8 @@ class HomePage extends Page {
     buttonRegister?.addEventListener('click', () => {
       registerLogin.classList.toggle('display-none');
       wrapperLogin.classList.add('display-none');
-
     })
-
   }
-
 }
 
 export default new HomePage();
