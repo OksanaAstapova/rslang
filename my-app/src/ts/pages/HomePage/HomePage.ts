@@ -14,8 +14,29 @@ class HomePage extends Page {
     conteinerInner.appendChild(homePageButton);
     conteinerHomePage.appendChild(conteinerInner);
     conteinerHomePage.appendChild(homePageImage);
+    
+    this.login();
     return conteinerHomePage;
   }
+  login() {
+    const buttonLogin = document.querySelector('.footer__button-login');
+    const wrapperLogin = document.querySelector('.wrapper__login') as HTMLElement;
+    const registerLogin = document.querySelector('.wrapper__register') as HTMLElement;
+
+    buttonLogin?.addEventListener('click', () => {
+      wrapperLogin.classList.toggle('display-none');
+      registerLogin.classList.add('display-none');
+    })
+
+    const buttonRegister = document.querySelector('.footer__button-register') as HTMLElement;
+    buttonRegister?.addEventListener('click', () => {
+      registerLogin.classList.toggle('display-none');
+      wrapperLogin.classList.add('display-none');
+
+    })
+
+  }
+
 }
 
 export default new HomePage();
