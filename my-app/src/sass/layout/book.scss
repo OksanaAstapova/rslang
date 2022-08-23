@@ -28,8 +28,8 @@ $ming: #15616dff;
         background-size: cover;
         background-repeat: no-repeat;
         font-size: 1.2em;
-        color: $amber-sae-ece;
-        text-shadow: 1px 1px 1px rgb(14, 14, 13);
+        // color: $amber-sae-ece;
+        // text-shadow: 1px 1px 1px rgb(14, 14, 13);
         font-weight: 500;
         cursor: pointer;
         border-radius: 3px;
@@ -51,10 +51,12 @@ $ming: #15616dff;
     margin-top: 25px;
     display: flex;
     width: 100vw;
+    min-height: 1810px;
   
     .left-panel{
   
       width: 20vw;
+      max-height: 390px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -66,10 +68,16 @@ $ming: #15616dff;
           width: 80%;
           background-color: $ming;
           cursor: pointer;
-          color: $amber-sae-ece;
-          text-shadow: 1px 1px 1px #000;
+          // color: $amber-sae-ece;
+          // text-shadow: 1px 1px 1px #000;
           font-weight: 600;
         }
+
+        .active{
+          background-color: $amber-sae-ece;
+        }
+
+        
     }
     
     .card-wrapper{
@@ -86,6 +94,7 @@ $ming: #15616dff;
   
         .card-img{
           width: 100%;
+          max-height: 50%;
         }
   
         .card-audio{
@@ -122,6 +131,7 @@ $ming: #15616dff;
             color: #ec1c24;
             font-size: 1.2em;
             margin: 2px;
+            flex-wrap: wrap;
   
           }
     
@@ -134,26 +144,28 @@ $ming: #15616dff;
        }
     }
 
-  .pagination{
-    display: flex;
-    width: 10vw;
-    margin: 0 auto;
+  
+}
+.pagination{
+  display: flex;
+  width: 10vw;
+  margin-top: 15px;
+  margin-left: 53vw;
+  font-size: 1.5em;
+
+  button{
+    width: 40px;
+    height: 40px;
+    background-color: $ming;
+    border-radius: 6px;
     font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 
-    button{
-      width: 40px;
-      height: 40px;
-      background-color: $ming;
-      border-radius: 6px;
-      font-size: 1.5em;
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-
-      p{
-        margin-top: -8px;
-      }
-
+    p{
+      margin-top: -8px;
     }
+
   }
 }
