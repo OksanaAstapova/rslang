@@ -1,17 +1,36 @@
 .header__contain{
     display: flex;
     flex-direction: row;
-    width: 90%;
+    width: 80vw;
 }
 
 .header__logo-image{
-    width: 300px;
+    width: 200px;
 }
 
 .navig__list{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 60vw;
-    margin-top: 80px;
+    width: 50vw;
+    margin-top: 50px;
+}
+
+.footer__button-login{
+    cursor: pointer;
+    margin-left: 5vw;
+    margin-top: 45px;
+    width: 120px;
+    height: 35px;
+    font-size: 17px;
+    background-color: rgb(210, 203, 202);
+    border-radius: 5px;
+    &:hover{
+        color: grey;
+        background-color: white;
+    }
+    &:active{
+        color: white;
+        background-color:  rgb(224, 88, 3);
+    }
 }
