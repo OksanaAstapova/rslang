@@ -40,6 +40,14 @@ const ourTeamFunc = () => {
   card.append(membersWrapper);
 
   teamMembers.forEach((member) => {
+    const ghIcon = `<div class="icon-text"> 
+    <span class="icon has-text-info">
+    <i class="fa-brands fa-github"></i>
+    </span> <a href='${member.github}' target="_blank">Github</a> 
+    </div>`;
+
+    const githubLink = helpers.createHtmlElement("div", "", ghIcon);
+
     const cardMember = helpers.createHtmlElement(
       "div",
       "member-card",
@@ -56,6 +64,7 @@ const ourTeamFunc = () => {
     (avatara as HTMLImageElement).src = member.photo;
     memberImage.append(avatara);
     cardMember.append(memberImage);
+    cardMember.append(githubLink);
 
     membersWrapper.append(cardMember); // add member-card into teamcards wrapper
   });

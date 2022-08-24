@@ -3,9 +3,13 @@
 @import "../node_modules/bulma/bulma.sass";
 // https://bulma.io/documentation/elements/button/
 // --- BULMA - finish -------------------------
+$fa-font-path: './sass/fontawesome-free-6.1.2-web/webfonts'; // font awesome fonts path
+//--------------------------------------------
 @import './sass/layout/header';
 @import './sass/layout/footer';
-@import './sass/layout/team';
+// @import './sass/layout/team';
+@import "./sass/fontawesome-free-6.1.2-web/scss/fontawesome.scss";
+@import "./sass/fontawesome-free-6.1.2-web/scss/brands.scss";
 // ---- COLORS - start ---------------------------------
 /* SCSS HEX */
 $rich-black-fogra-29: #001524ff;
