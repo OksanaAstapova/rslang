@@ -1,0 +1,171 @@
+$amber-sae-ece: #ff7d00ff;
+$ming: #15616dff;
+
+
+.text-italic{
+    font-style: italic;
+    border-top: 1px dashed gray;
+}
+
+.book-title{
+    font-size: 3em;
+    font-weight: 900;
+    // margin-left: 0 auto;
+    text-align: center;
+    margin: 20px;
+}
+
+.book-buttons{
+    text-align: center;
+    width: 12vw;
+    height: 32px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+  
+      button{
+        width: 30%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-size: 1.2em;
+        // color: $amber-sae-ece;
+        // text-shadow: 1px 1px 1px rgb(14, 14, 13);
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 3px;
+  
+  
+      }
+  
+      .en{
+        background-image: url(../src/images/en_flag.png);
+      }
+      
+      .ru{
+        background-image: url(../src/images/ru_flag.jpg);
+      }
+  }
+
+
+.book-wrapper{
+    margin-top: 25px;
+    display: flex;
+    width: 100vw;
+    min-height: 1810px;
+  
+    .left-panel{
+  
+      width: 20vw;
+      max-height: 390px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+  
+        button{
+          height: 60px;
+          border-radius: 6px;
+          width: 80%;
+          background-color: $ming;
+          cursor: pointer;
+          color: black;
+          // text-shadow: 1px 1px 1px #000;
+          font-weight: 600;
+        }
+
+        .active{
+          background-color: $amber-sae-ece;
+        }
+
+        
+    }
+    
+    .card-wrapper{
+      display: flex;
+      width: 80vw;
+      flex-wrap: wrap;
+      gap: 15px;
+    
+      .card{
+        width: 23%;
+        display: flex;
+        flex-direction: column;
+  
+        .card-img{
+          width: 100%;
+          max-height: 50%;
+        }
+  
+        .card-audio{
+          width: 40px;
+          height: 40px;
+          background-image: url(../src/images/audio.png);
+          background-size: cover;
+          position: absolute;
+          right: 6px;
+          top: 130px;
+          cursor: pointer;
+        }
+  
+        .card-info{
+  
+          margin-left: 5px;
+  
+          .card-title{
+            font-variant: small-caps;
+            font-weight: 900;
+            font-size: 2.3em;
+            position: absolute;
+            color: $amber-sae-ece;
+            text-shadow: 2px 2px rgb(14, 14, 13);
+            top: 120px;
+            left: 10px;
+            
+          }
+    
+          .translate-panel{
+    
+            display: flex;
+            justify-content: space-around;
+            color: #ec1c24;
+            font-size: 1.2em;
+            margin: 2px;
+            flex-wrap: wrap;
+  
+          }
+    
+          .hide{
+            display: none;
+          }
+        }
+        
+    
+       }
+    }
+
+  
+}
+.pagination{
+  display: flex;
+  width: 10vw;
+  margin-top: 15px;
+  margin-left: 53vw;
+  font-size: 1.5em;
+
+  button{
+    width: 40px;
+    height: 40px;
+    background-color: $ming;
+    border-radius: 6px;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 10px;
+
+
+  }
+  :active{
+    background-color: $amber-sae-ece;
+  }
+}
