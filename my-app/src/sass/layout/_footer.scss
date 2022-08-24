@@ -1,12 +1,30 @@
 .footer__container{
+    position: absolute;
+    bottom: 0;
+    left: 10vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 75vw;
+    width: 80vw;
 }
 
 .footer__logo-image{
     width: 150px;
-    filter: opacity(0.5) drop-shadow(0 0 0 rgb(252, 113, 21));
+    filter: opacity(0.5) drop-shadow(0 0 0 rgb(120, 140, 250));
+}
+.github-link{
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .footer__github-logo{
+        margin-top: 10px;
+        width: 55px;
+        height: 55px;
+    }
+    .footer__link-conteiner{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
