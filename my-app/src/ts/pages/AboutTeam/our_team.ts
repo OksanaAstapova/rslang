@@ -24,8 +24,8 @@ const teamMembers = [
 ];
 
 const ourTeamFunc = () => {
-  const card = helpers.createHtmlElement("div", "team-card", "Наша команда");
-  // const card = helpers.createHtmlElement("div", "team-card", "");
+  // const card = helpers.createHtmlElement("div", "team-card", "Наша команда");
+  const card = helpers.createHtmlElement("div", "team-card", "");
   const teamHeader = helpers.createHtmlElement(
     "h1",
     "team-header",
@@ -57,10 +57,10 @@ const ourTeamFunc = () => {
     memberImage.append(avatara);
     cardMember.append(memberImage);
 
-    membersWrapper.append(cardMember); // добавляем карточку с пользователем в контейнер карточек команды
+    membersWrapper.append(cardMember); // add member-card into teamcards wrapper
   });
   return card;
 };
 
-export const ourTeam = ourTeamFunc; // export as function for calling on page
-// export const ourTeam = ourTeamFunc(); // export as html element
+// export const ourTeam = ourTeamFunc; // export as function for calling on page
+export const ourTeam = ourTeamFunc(); // export as html element

@@ -5,6 +5,7 @@
 // --- BULMA - finish -------------------------
 @import './sass/layout/header';
 @import './sass/layout/footer';
+@import './sass/layout/team';
 // ---- COLORS - start ---------------------------------
 /* SCSS HEX */
 $rich-black-fogra-29: #001524ff;
@@ -176,4 +177,6 @@ html, body {
   }
 }
 
-// ---TEAM SECTION - finish ---------------------------
+.team-header {
+  
+}

@@ -1,13 +1,15 @@
 import Component from "../../template/Component";
 import Page from "../../template/Page";
 import { ourTeam } from "./our_team";
-// import ourTeam from "./src/ts/pages/AboutTeam/our_team";
+
+const wrapper = document.body.querySelector(".wrapper");
 
 class AboutPage extends Page {
   render() {
-    ourTeam();
     document.body.className = "body";
-    return new Component("p", "", "\n About page").node;
+    (wrapper as HTMLElement).append(ourTeam);
+    return new Component("p", "", "").node;
+    // return new Component("p", "", "\n About page").node;
   }
 }
 
