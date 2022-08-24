@@ -3,6 +3,7 @@ import { renderWords, card_wrapper, pagination } from "./create-content";
 declare global {
     interface Window { switchNextPage: any; }
     interface Window { switchPrevPage: any; }
+    interface Window { playAudio: any; }
 }
 
 export const switchLevels = () =>{
@@ -10,13 +11,18 @@ export const switchLevels = () =>{
     const levels = document.querySelector('.left-panel') as HTMLElement;
 
     levels.addEventListener('click', (e)=>{
-        const target = e.target as HTMLElement;
+        const target = e.target as HTMLButtonElement;
 
         const buttons = document.querySelectorAll('.left-panel button')
-        buttons.forEach(button => {
+        for (let i=0; i<buttons.length; i++){
+            const button = buttons[i] as HTMLButtonElement;
+
             button.classList.remove('active');
-        })
+            button.disabled = false;
+        }
+      
         target.classList.add('active');
+        target.disabled = true;
 
         const level = +(target.id);
 
@@ -131,4 +137,10 @@ function switchPrevPage(){
         }
 
     renderWords(counter, level, en, ru);
+}
+window.playAudio = playAudio;
+
+function playAudio(i: number){
+    const sound = document.getElementById(`audio ${i}`) as HTMLAudioElement;
+    sound.play()
 }

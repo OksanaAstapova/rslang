@@ -68,7 +68,7 @@ $ming: #15616dff;
           width: 80%;
           background-color: $ming;
           cursor: pointer;
-          // color: $amber-sae-ece;
+          color: black;
           // text-shadow: 1px 1px 1px #000;
           font-weight: 600;
         }
@@ -161,10 +161,11 @@ $ming: #15616dff;
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding-bottom: 10px;
 
-    p{
-      margin-top: -8px;
-    }
 
+  }
+  :active{
+    background-color: $amber-sae-ece;
   }
 }

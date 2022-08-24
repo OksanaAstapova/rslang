@@ -30,7 +30,7 @@ export const createBookContent = async () => {
     let left_panel = document.createElement("aside");
     left_panel.classList.add('left-panel');
 
-    const levels = [`<button id='0' class='A1 active'>ELEMENTARY</button>`,
+    const levels = [`<button id='0' class='A1 active' disabled>ELEMENTARY</button>`,
     `<button id='1' class='A2'>PRE-INTERMEDIATE</button>`, 
     `<button id='2' class='B1'>INTERMEDIATE</button>`,
     `<button id='3' class='B2'>UPPER-INTERMEDIATE</button>`,
@@ -48,9 +48,9 @@ export const createBookContent = async () => {
     root.appendChild(book_wrapper);
 
     pagination.classList.add('pagination');
-    pagination.innerHTML = `<button class = 'prev' onclick='switchPrevPage()' disabled><p><</p></button>
+    pagination.innerHTML = `<button class = 'prev' onclick='switchPrevPage()' disabled><</button>
     <div class='page-number'>1</div>
-    <button class='next' onclick='switchNextPage()'><p>></p></button>`;
+    <button class='next' onclick='switchNextPage()'>></button>`;
 
     book_wrapper.classList.add('book-wrapper')
     root.appendChild(pagination);
@@ -71,7 +71,9 @@ export const renderWords = async (page: number, level: number, en: string, ru: s
             const word = content[i];
             const card = `<div class='card' id='${word.id}'>
               <img class='card-img' src='https://rssslang.herokuapp.com/${word.image}' alt='${word.word}'>
-              <div class='card-audio'><audio src='https://rssslang.herokuapp.com/${word.audio}'></audio></div>
+              <div class='card-audio' onclick='playAudio(${i})'>
+                <audio id='audio ${i}' src='https://rssslang.herokuapp.com/${word.audio}'></audio>
+              </div>
               <div class='card-info'>
                 <h1 class='card-title'>${word.word}</h1>
                 <div class='translate-panel'>
