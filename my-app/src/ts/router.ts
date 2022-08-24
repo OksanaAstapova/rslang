@@ -16,7 +16,7 @@ type Route = {
   component: Page;
 };
 
-const root = document.querySelector('#main__root') as HTMLElement;
+export const root = document.querySelector('#main__root') as HTMLElement;
 
 const routes = [
   { path: '/', component: homePage },
