@@ -1,5 +1,4 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
-import { intoEn, intoRu } from "./switch-language";
 
 declare global {
     interface Window { switchNextPage: any; }

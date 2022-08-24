@@ -47,7 +47,6 @@ $font-color: $amber-sae-ece;
 
 html, body {
   @include flex-all-centerd_columns;
-  min-height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
@@ -73,6 +72,7 @@ html, body {
 .main {
   @include flex-all-centerd_columns;
   height: 100%;
+  min-height: 70vh;
 }
 
 .footer {

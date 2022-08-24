@@ -1,7 +1,7 @@
 import { switchLevels } from "./utils";
 import { switchLang } from "./switch-language";
+import { root } from '../../router';
 
-const root = document.querySelector('#main__root') as HTMLElement;
 const book_wrapper = document.createElement("div");
 export const card_wrapper = document.createElement("div") as HTMLElement;
 export const pagination = document.createElement('div');
@@ -41,6 +41,7 @@ export const createBookContent = async () => {
         left_panel.innerHTML += level
     })
 
+    book_wrapper.innerHTML = '';
     book_wrapper.appendChild(left_panel)
     book_wrapper.appendChild(card_wrapper);
 
@@ -64,6 +65,7 @@ export const renderWords = async (page: number, level: number, en: string, ru: s
   const content = await createWords(page, level);
 
   card_wrapper.classList.add('card-wrapper');
+  card_wrapper.innerHTML = '';
 
   for (let i=0; i < content.length; i++){
             const word = content[i];
