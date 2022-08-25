@@ -92,6 +92,8 @@ html, body {
   @include flex-space-between_rows;
   background-color: $background-color;
   margin-top: 20px;
+  position: relative;
+  width: 100vw;
 }
 
 img {
@@ -136,8 +138,3 @@ a.navbar-item {
 
 }
 
-
-
-.team-header {
-  
-}
