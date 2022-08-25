@@ -1,12 +1,12 @@
-import router from './router';
+import router from "./router";
 
 export default class App {
-    async start() {
-        this.isHashChange();
-        router();
-    }
+  async start() {
+    this.isHashChange();
+    router();
+  }
 
-    isHashChange() {
-        window.addEventListener('hashchange', () => router());
-    }
+  isHashChange() {
+    window.addEventListener("hashchange", () => router());
+  }
 }
