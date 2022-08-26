@@ -66,7 +66,7 @@ export const createBookContent = async () => {
 export const renderWords = async (page: number, level: number, en: string, ru: string, color: string) => {
 
   const content = await createWords(page, level);
-
+  console.log(content)
   card_wrapper.classList.add('card-wrapper');
   card_wrapper.innerHTML = '';
 
@@ -78,6 +78,8 @@ export const renderWords = async (page: number, level: number, en: string, ru: s
               </div>
               <div class='card-audio' onclick='playAudio(${i})'>
               <audio id='audio ${i}' src='https://rssslang.herokuapp.com/${word.audio}'></audio>
+              <audio id='audioExample ${i}' src='https://rssslang.herokuapp.com/${word.audioExample}'></audio>
+              <audio id='audioMeaning ${i}' src='https://rssslang.herokuapp.com/${word.audioMeaning}'></audio>
 
               <svg width="0" height="0" class="hidden"><symbol version="1.1" id="audio" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" xml:space="preserve" viewBox="0 0 496.159 496.159">
               <path style="fill:#${color};" d="M496.159,248.085c0-137.023-111.07-248.082-248.076-248.082C111.071,0.003,0,111.063,0,248.085

@@ -209,5 +209,14 @@ window.playAudio = playAudio;
 
 function playAudio(i: number) {
   const sound = document.getElementById(`audio ${i}`) as HTMLAudioElement;
+  const soundExample = document.getElementById(`audioExample ${i}`) as HTMLAudioElement;
+  const soundMeaning = document.getElementById(`audioMeaning ${i}`) as HTMLAudioElement;
   sound.play();
+  sound.onended = () => {
+    soundExample.play();
+  };
+  soundExample.onended = () => {
+    soundMeaning.play();
+  }
+  
 }
