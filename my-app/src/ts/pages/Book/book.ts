@@ -8,7 +8,7 @@ class BookPage extends Page {
     root.innerHTML = "";
 
     createBookContent();
-    renderWords(0, 0, "appear", "hide");
+    renderWords(0, 0, "appear", "hide", 'b0a2f9');
 
     document.body.className = "body";
     return new Component("h1", "book-title", "\n Book").node;
