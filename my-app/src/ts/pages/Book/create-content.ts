@@ -1,10 +1,13 @@
-import { switchLevels, switchPages } from "./switch-levels";
+import { switchLevels} from "./switch-levels";
+import { switchPages} from "./switch-pages";
 import { switchLang } from "./switch-language";
 import { root } from '../../router';
+import { getDifficulties, playGames } from "./dictionary";
 
 const book_wrapper = document.createElement("div");
 export const card_wrapper = document.createElement("div") as HTMLElement;
 export const pagination = document.createElement('div');
+
 
 export const createWords: any = async (page: number, group: number) => {
         const rawResponse = await fetch(`https://rssslang.herokuapp.com/words?page=${page}&group=${group}`, {
@@ -24,7 +27,8 @@ export const createBookContent = async () => {
     const lang_panel = document.createElement("div");
     lang_panel.classList.add('book-buttons')
     lang_panel.innerHTML = `<button class='en' disabled><p>en</p></button>
-    <button class='ru'><p>ru</p></button>`
+    <button class='ru'><p>ru</p></button>
+    <button class = 'dictionary'>DICTIONARY</button>`
     root.appendChild(lang_panel);
 
     let left_panel = document.createElement("aside");
@@ -52,7 +56,12 @@ export const createBookContent = async () => {
     <button class = 'prev' disabled><</button>
     <div class='page-number'>1</div>
     <button class='next'>></button>
-    <button class='last'>>></button>`;
+    <button class='last'>>></button>
+    <button class='train'>Train</button>
+    <div class = 'play-games'>
+    <button class='play-audiocall'>Audiocall</button>
+    <button class='play-sprint'>Sprint</button>
+    </div>`;
 
     book_wrapper.classList.add('book-wrapper')
     root.appendChild(pagination);
@@ -60,7 +69,8 @@ export const createBookContent = async () => {
     switchLang();
     switchLevels();
     switchPages();
-
+    getDifficulties();
+    playGames();
 }
 
 export const renderWords = async (page: number, level: number, en: string, ru: string, color: string) => {

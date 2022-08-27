@@ -19,24 +19,20 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
 
 .book-buttons{
     text-align: center;
-    width: 12vw;
+    width: 40%;
     height: 32px;
-    margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 46vw;
   
       button{
-        width: 30%;
+        width: 8%;
         background-size: cover;
         background-repeat: no-repeat;
         font-size: 1.2em;
-        // color: $amber-sae-ece;
-        // text-shadow: 1px 1px 1px rgb(14, 14, 13);
         font-weight: 500;
         cursor: pointer;
         border-radius: 3px;
-  
-  
       }
   
       .en{
@@ -45,6 +41,20 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
       
       .ru{
         background-image: url(../src/images/ru_flag.jpg);
+        margin-left: 30px;
+      }
+
+      .dictionary{
+        height: 50px;
+          border-radius: 6px;
+          width: 33%;
+          cursor: pointer;
+          color: black;
+          font-weight: 500;
+          font-size: 1em;
+          background-color: #b0a2f9;
+          margin-right: 0;
+         margin-left: auto;
       }
   }
 
@@ -75,12 +85,7 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
 
         }
 
-        .active{
-          background-image: url(../src/images/active.png);
-          background-size: cover;
-          background-repeat: no-repeat;
-          background-position: center;
-        }
+        
 
         .A1{
           background-color: #b0a2f9;
@@ -223,10 +228,41 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
     cursor: pointer;
     padding-bottom: 10px;
     margin: 10px;
+    border: none;
 
 
   }
-  :active{
-    background-color: $amber-sae-ece;
+  .train{
+    position: absolute;
+    right: 20vw;
+    font-size: 0.9em;
+    width: 9vw;
+    background-color:  #b0a2f9;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
   }
+
+  .play-games{
+    display: none;
+    position: absolute;
+    right: 5vw;
+    width: 13vw;
+
+    button{
+      width: 55px;
+      height: 55px;
+      background-color: white;
+      border-radius: 50%;
+      font-size: 0.5em;
+    }
+  }
+}
+
+.active{
+  background-image: url(../src/images/active.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
