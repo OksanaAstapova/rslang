@@ -3,6 +3,7 @@ import { switchPages} from "./switch-pages";
 import { switchLang } from "./switch-language";
 import { root } from '../../router';
 import { getDifficulties, playGames } from "./dictionary";
+import { loadStorage } from "./local-storage";
 
 const book_wrapper = document.createElement("div");
 export const card_wrapper = document.createElement("div") as HTMLElement;
@@ -71,6 +72,12 @@ export const createBookContent = async () => {
     switchPages();
     getDifficulties();
     playGames();
+
+    if (localStorage.length != 0) {
+      loadStorage()
+      
+    }else renderWords(0, 0, "appear", "hide", 'b0a2f9');
+
 }
 
 export const renderWords = async (page: number, level: number, en: string, ru: string, color: string) => {
@@ -123,6 +130,5 @@ export const renderWords = async (page: number, level: number, en: string, ru: s
             </div>`
             card_wrapper.innerHTML += card;
         }
-
 
 }

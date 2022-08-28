@@ -50,13 +50,20 @@ export const switchLevels = () => {
       en = `hide`;
     }
     renderWords(0, level, en, ru, color);
+
+    localStorage.setItem('level', target.id);
+    localStorage.setItem('en', en);
+    localStorage.setItem('ru', ru);
+    localStorage.setItem('color', color);
+
   });
+
 };
 
 window.playAudio = playAudio;
 
 function playAudio(i: number) {
-  
+
   const sound = document.getElementById(`audio ${i}`) as HTMLAudioElement;
   const soundExample = document.getElementById(`audioExample ${i}`) as HTMLAudioElement;
   const soundMeaning = document.getElementById(`audioMeaning ${i}`) as HTMLAudioElement;

@@ -47,6 +47,10 @@ export const switchPages = () => {
           }
         
           renderWords(0, level, en, ru, color);
+          
+          localStorage.setItem('page', '0');
+          localStorage.setItem('en', en);
+          localStorage.setItem('ru', ru);
   
           break;
         
@@ -84,7 +88,10 @@ export const switchPages = () => {
               }
             
               renderWords(number, level, en, ru, color);
-          
+             localStorage.setItem('page', number.toString());
+             localStorage.setItem('en', en);
+            localStorage.setItem('ru', ru);
+              
           break;
         
         case 'next':
@@ -122,6 +129,11 @@ export const switchPages = () => {
             }
           
             renderWords(num, level, en, ru, color);
+
+            localStorage.setItem('page', num.toString());
+            localStorage.setItem('en', en);
+            localStorage.setItem('ru', ru);
+
         break;
   
         case 'last':
@@ -148,6 +160,11 @@ export const switchPages = () => {
           }
         
           renderWords(29, level, en, ru, color);
+
+          localStorage.setItem('page', '29');
+          localStorage.setItem('en', en);
+          localStorage.setItem('ru', ru);
+
           break;
       }
     })
