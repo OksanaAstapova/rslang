@@ -35,7 +35,8 @@ class HomePage extends Page {
     const registerLogin = document.querySelector(
       ".wrapper__register"
     ) as HTMLElement;
-
+    const closeButtons = document.querySelectorAll('.close-autorization');
+    
     buttonLogin?.addEventListener("click", () => {
       wrapperLogin.classList.toggle("display-none");
       registerLogin.classList.add("display-none");
@@ -48,6 +49,13 @@ class HomePage extends Page {
       registerLogin.classList.toggle("display-none");
       wrapperLogin.classList.add("display-none");
     });
+
+    closeButtons.forEach(close => {
+      close.addEventListener('click', () => {
+        registerLogin.classList.add("display-none");
+        wrapperLogin.classList.add("display-none");
+      })
+    })
   }
 }
 

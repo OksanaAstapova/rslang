@@ -2,6 +2,17 @@
     display: none;
 }
 
+.wrapper__login,
+.wrapper__register{
+    z-index: 999;
+}
+
+.close-autorization{
+    position: absolute;
+    right: 50px;
+    margin-top: -20px;
+}
+
 .login__conteiner{
     width: 155px;
     display: flex;
