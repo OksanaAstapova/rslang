@@ -1,7 +1,5 @@
 import * as helpers from "../AboutTeam/helpers";
 
-// export const audiocall_game = ``;
-
 const dropdownChoise = `
   <div class="dropdown-trigger">
     <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -13,26 +11,26 @@ const dropdownChoise = `
   </div>
   <div class="dropdown-menu" id="dropdown-menu" role="menu">
     <div class="dropdown-content">
-      <a href="#" class="dropdown-item">
-        Dropdown item
+      <a data-level="01" class="dropdown-item">
+        01 Level
       </a>
-      <a class="dropdown-item">
-        Other dropdown item
+      <a data-level="02" class="dropdown-item">
+        02 Level
       </a>
-      <a href="#" class="dropdown-item is-active">
-        Active dropdown item
+      <a data-level="03" class="dropdown-item is-active">
+        03 Level
       </a>
-      <a href="#" class="dropdown-item">
-        Other dropdown item
+      <a data-level="04" class="dropdown-item">
+        04 Level
       </a>
-      <hr class="dropdown-divider">
-      <a href="#" class="dropdown-item">
-        With a divider
+      <a data-level="05" class="dropdown-item">
+        05 Level
+      </a>
+      <a data-level="06" class="dropdown-item">
+        06 Level
       </a>
     </div>
 </div>`
-
-
 
 const audiocallGameFunc = () => {
   const card = helpers.createHtmlElement("div", "audio-game__card", "");
@@ -43,15 +41,7 @@ const audiocallGameFunc = () => {
     "Игра: Аудиовызов"
   );
   card.append(audioHeader);
-  // --------------------------------------------------------------
 
-  //-----------------------------------------------------------------
-  const gameLegvelHeader = helpers.createHtmlElement(
-    "h2",
-    "audio-header",
-    "Выберите сложность"
-  );
-  card.append(gameLegvelHeader);
   // --------------------------------------------------------------
   const levelChoise = helpers.createHtmlElement(
     "div",
@@ -59,19 +49,17 @@ const audiocallGameFunc = () => {
     dropdownChoise
   );
   card.append(levelChoise);
-  // --------------------------------------------------------------
 
+  // --------------------------------------------------------------
   const audioWrapper = helpers.createHtmlElement(
     "div",
     "audio-game__wrapper",
     ""
   );
   card.append(audioWrapper);
+
   // --------------------------------------------------------------
-  // --------------------------------------------------------------
-  
   return card;
 };
 
-// export const ourTeam = ourTeamFunc; // export as function for calling on page
 export const audiocallGame = audiocallGameFunc(); // export as html element

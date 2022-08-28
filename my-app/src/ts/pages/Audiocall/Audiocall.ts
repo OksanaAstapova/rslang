@@ -10,8 +10,14 @@ class AudiocallPage extends Page {
     wrapper.innerHTML = ""; // clearing the wrapper element
     wrapper.append(audiocallGame);
     return new Component("", "", "").node;
+    // return new Component("", "", "").node;
     // return new Component("p", "", "\n About page").node;
   }
 }
 
 export default new AudiocallPage();
+
+const dropdownContent = document.body.querySelector(
+  ".dropdown-content"
+) as HTMLElement;
+console.log("dropdown-content->", dropdownContent);
