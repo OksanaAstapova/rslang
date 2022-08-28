@@ -31,10 +31,10 @@ class SprintPage extends Page {
       choiceLevelButtons.append(levelButton);
       levelButton.addEventListener('click', async () => {
         this.currentLevel = String(Number(levelButton.innerText) - 1);
-        console.log(this.currentLevel);
         choice.destroy();
         let sprintView = new SprintView();
-         await sprintView.startQuiz(this.currentLevel, 'any');
+        await sprintView.startQuiz(this.currentLevel, 'any');
+        document.body.style.backgroundColor = "#001524ff";
       })
     })
 

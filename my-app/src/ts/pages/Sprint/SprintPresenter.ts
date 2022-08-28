@@ -1,7 +1,6 @@
 import { audioStart } from "../../utils";
-import {/*  Statistics, */ Words } from "../../template/interfaces";
-/* import { updateWordFails, updateWordWins } from "../StatisticsPage/wordStats";
- */import SprintModel from "./SprintModel";
+import { Words } from "../../template/interfaces";
+import SprintModel from "./SprintModel";
 import SprintView from "./SprintView";
 
 export default class SprintPresenter {
@@ -9,7 +8,7 @@ export default class SprintPresenter {
   page:string = 'any'
   model: SprintModel  = new SprintModel();
   view: SprintView;
-  
+
   answers: Words = [];
 
   constructor(view: SprintView) {
@@ -24,10 +23,6 @@ export default class SprintPresenter {
     this.view.renderResultsPage(this.model.arrayTranscr);
   }
 
-/*   async sendStatistics(statistics: Statistics) {
-    await this.model.updateUserStatistics(statistics);
-  } */
-
   async addQuestion() {
     await this.model.makeQuestionsArray(this.level, this.page);
   }
@@ -35,7 +30,7 @@ export default class SprintPresenter {
   timer = () => {
     let sec: number = 61;
     let timeT = <HTMLParagraphElement>document.querySelector('.timer');
-    let sec_timer = setInterval(() => {
+     let sec_timer = setInterval(() => {
         if(sec > 0){
             sec--;
         } else {
@@ -51,6 +46,7 @@ export default class SprintPresenter {
     }, 1000);
 }
 
+
   async createQuiz(level: string, page: string) {
     this.level = level;
     this.page = page;
@@ -64,12 +60,4 @@ export default class SprintPresenter {
     this.timer();
     
   }
-
-/*   onWordWin(wordOrder: number) {
-    updateWordWins(this.model.arrayId[wordOrder], 'sprint');
-  }
-
-  onWordFail(wordOrder: number) {
-    updateWordFails(this.model.arrayId[wordOrder], 'sprint');
-  } */
 }

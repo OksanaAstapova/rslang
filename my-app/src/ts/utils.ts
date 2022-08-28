@@ -1,4 +1,4 @@
-export const BASE_SERVER = 'rssslang.herokuapp.com';
+export const BASE_SERVER = 'https://rssslang.herokuapp.com/';
 
 export const sprintDescription = `
     Mini game Sprint
@@ -30,4 +30,17 @@ export function audioFalse(){
 
 export function getRandom () {
     return Math.round(Math.random()) ? true : false;
+}
+
+export function countTrueAnswear(arr: string[]) {
+    if(arr.length === 0){
+        return 0;
+    }
+    let count = 0;
+    for(let i = 0; i < arr.length; i++) {
+        if(arr[i] === 'true'){
+            count += 1;
+        }
+    }
+    return count;
 }

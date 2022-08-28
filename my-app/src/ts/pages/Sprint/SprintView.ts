@@ -1,7 +1,7 @@
 import Component from "../../template/Component";
-import { audioFalse, audioTrue, /* createPopUp, */ getRandom } from "../../utils";
-import { Word } from "../../template/interfaces";
+import { audioFalse, audioTrue, countTrueAnswear, getRandom } from "../../utils";
 import SprintPresenter from "./SprintPresenter";
+import router from '../../router';
 
 export default class SprintView {
   private presenter: SprintPresenter = new SprintPresenter(this);
@@ -15,11 +15,10 @@ export default class SprintView {
   count:number = 0;
   rightAnswerSeries:number = 0;
   longestSeries: number = 0;
- 
+  
   gameContainer = <HTMLDivElement>document.querySelector('#main__root');
   leftBut = <HTMLButtonElement>document.getElementById('btn-left');
   rightBut = <HTMLButtonElement>document.getElementById('btn-right');
-
   soundImage = <HTMLImageElement>document.getElementById('sound-image');
 
   constructor () {
@@ -35,19 +34,17 @@ export default class SprintView {
   renderSprint = (arrayEng: string[], arrayRus: string[]) => {
     this.arrayEng = arrayEng;
     this.arrayRus = arrayRus;
-    const pageWrapper = <HTMLDivElement>document.querySelector('#main__root');
-    const closePageButton = new Component('button', 'close-sprint', '×').node;
-   /*  closePageButton.addEventListener('click', () => {
-      createPopUp('sprint', this.presenter, this.prepareStatistics());
-    }) */
-    pageWrapper.append(closePageButton);
+    
     const html =`
+    <p class="card__sprint-title">Mini game Sprint</p>
     <div class="card">
     <div class="sprint-top">
       <div class="block-timer">
+        <p class="time">Time</p>
         <p class="timer"></p>
       </div>
       <div class="block-result">
+       <p class="result__score">Score</p>
         <p class="result" id="result">0</p>
       </div>
     </div>
@@ -61,28 +58,23 @@ export default class SprintView {
   </div>
     `
     this.gameContainer.innerHTML = html;
+
     const buttonsGroup = new Component('div', 'btn-group').node;
-    const leftButton = new Component('button', 'btn-answer btn-left', 'Неверно').node;
+
+    const leftButton = new Component('button', 'btn-answer btn-left', 'False').node;
+
     leftButton.addEventListener('click', () => {
       this.nextQuestionFalse();
     });
 
-
     document.addEventListener('keydown', (event) => {
       if (event.code == 'ArrowLeft') {
         this.nextQuestionFalse();
-        leftButton.style.backgroundColor = "#c2c2c2ee";
       }
     });
-    document.addEventListener('keyup', (event) => {
-      if (event.code == 'ArrowLeft') {
-        leftButton.style.backgroundColor = "transparent";
-      }
-    });
-
     
     buttonsGroup.append(leftButton);
-    const rightButton = new Component('button', 'btn-answer btn-right', 'Верно').node;
+    const rightButton = new Component('button', 'btn-answer btn-right', 'True').node;
     rightButton.addEventListener('click', () => {
       this.nextQuestionTrue();
     });
@@ -90,14 +82,9 @@ export default class SprintView {
     document.addEventListener('keydown', (event) => {
       if (event.code == 'ArrowRight') {
         this.nextQuestionTrue()
-        rightButton.style.backgroundColor = "#c2c2c2ee";
       }
     });
-    document.addEventListener('keyup', (event) => {
-      if (event.code == 'ArrowRight') {
-        rightButton.style.backgroundColor = "transparent";
-      }
-    });
+
 
     buttonsGroup.append(rightButton);
     this.gameContainer.append(buttonsGroup);
@@ -110,13 +97,13 @@ renderMainWords = (numberWordsEng: number, numberWordsRus:number) => {
   src="./images/sound.png" alt="sound" />
      <h5 class="card-title">${this.arrayEng[numberWordsEng]}</h5>
      <p class="card-text">${this.arrayRus[numberWordsRus]}</p>`;
+     this.playAudio();
  }
 
 nextQuestionTrue = () =>  {
   if(this.numberWordsEng === this.numberWordsRus){
       this.rightAnswerSeries++;
-/*       this.presenter.onWordWin(this.numberWordsEng);
- */      this.arrTrueAnswer.push(this.arrayEng[this.numberWordsEng]);
+      this.arrTrueAnswer.push(this.arrayEng[this.numberWordsEng]);
       this.arrBooleanAnswer.push('true');
       audioTrue();
   } else {
@@ -124,10 +111,9 @@ nextQuestionTrue = () =>  {
       this.longestSeries = this.rightAnswerSeries;
     }
     this.rightAnswerSeries = 0;
-/*       this.presenter.onWordFail(this.numberWordsEng);
- */      this.arrTrueAnswer = [];
-      this.arrBooleanAnswer.push('false');
-      audioFalse()
+    this.arrTrueAnswer = [];
+    this.arrBooleanAnswer.push('false');
+    audioFalse()
   }
 
   this.sumResult();
@@ -154,8 +140,7 @@ nextQuestionTrue = () =>  {
 nextQuestionFalse = () => {
   if (this.numberWordsEng !== this.numberWordsRus) {
     this.rightAnswerSeries++;
-/*     this.presenter.onWordWin(this.numberWordsEng);
- */    this.arrTrueAnswer.push(this.arrayEng[this.numberWordsEng])
+    this.arrTrueAnswer.push(this.arrayEng[this.numberWordsEng])
     this.arrBooleanAnswer.push('true');
       audioTrue();
   } else {
@@ -163,8 +148,7 @@ nextQuestionFalse = () => {
       this.longestSeries = this.rightAnswerSeries;
     }
     this.rightAnswerSeries = 0;
-/*     this.presenter.onWordFail(this.numberWordsEng);
- */    this.arrTrueAnswer = [];
+    this.arrTrueAnswer = [];
     this.arrBooleanAnswer.push('false');
     audioFalse()
   }
@@ -330,13 +314,34 @@ renderCircleBlock = () => {
 
 
 renderResultsPage = (arrayTranscription:string[]) =>{
-/*   this.presenter.sendStatistics(this.prepareStatistics());
- */  const html =`
-  <div class="card">
-  <h6 class="card-title">Ваш результат ${this.count}</h6>
 
+  const rootMain = document.querySelector('.main') as HTMLElement;
+  const closePageButton = new Component('a', 'close-sprint', '×', {href: "#/"}).node;
+  const backPageButton = new Component('a', 'close-sprint-back ', '⇦', {href: "#/game-sprint"} ).node;
+
+  rootMain.append(closePageButton, backPageButton);
+  closePageButton.addEventListener('click', () => {
+    const header = document.querySelector('.header') as HTMLElement;
+    const footer = document.querySelector('.footer') as HTMLElement;
+    header.classList.remove('display-none');
+    footer.classList.remove('display-none');
+    backPageButton.classList.add('display-none');
+    closePageButton.classList.add('display-none');
+    setTimeout(()=> router()) ;
+  })
+  
+  backPageButton.addEventListener('click', () => {
+    backPageButton.classList.add('display-none');
+    closePageButton.classList.add('display-none');
+    router();
+  })
+
+ const html =`
+  <div class="card">
+  <h6 class="card__title-score">Score: ${this.count}</h6>
+  <h6 class="card__title-score">True answear: ${countTrueAnswear(this.arrBooleanAnswer)}</h6>
+  <h6 class="card__title-score">False answear: ${this.arrBooleanAnswer.length - countTrueAnswear(this.arrBooleanAnswer)}</h6>
   <div class="card-bodys">
-    
     <div class="sprint-results"></div>
   </div>
 </div>
@@ -371,7 +376,6 @@ renderResultsPage = (arrayTranscription:string[]) =>{
     resultItemText.innerHTML = resultText;
     resultItem.append(resultItemText);
     resultList.append(resultItem);
-   }
+    }
  }
-
 }

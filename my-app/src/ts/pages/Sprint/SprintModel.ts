@@ -17,7 +17,7 @@ export default class SprintModel {
 
     async fetchWords(group: string) {
         const response = await fetch(
-        `http://${BASE_SERVER}/words?page=${this.page}&group=${group}`
+        `https://rssslang.herokuapp.com/words?page=${this.page}&group=${group}`
     );
         const items = await response.json();
         this.array = items;    
@@ -38,7 +38,7 @@ export default class SprintModel {
     }
 
     playAudio(numberWordsEng: number){
-        const audio = new Audio(`${BASE_SERVER}/${this.arrayPron[numberWordsEng -1]}`);
+        const audio = new Audio(`https://rssslang.herokuapp.com/${this.arrayPron[numberWordsEng -1]}`);
         audio.play();
     }
 
