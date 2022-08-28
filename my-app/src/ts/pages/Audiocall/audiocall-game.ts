@@ -1,4 +1,7 @@
 import * as helpers from "../AboutTeam/helpers";
+import { root } from '../../router';
+import { createWords } from "../Book/create-content";
+
 
 const dropdownChoise = `
   <div class="dropdown-trigger">
@@ -32,8 +35,10 @@ const dropdownChoise = `
     </div>
 </div>`
 
-const audiocallGameFunc = () => {
+const audiocallGameFunc = async () => {
+  const nth = await createWords(0, 0);
   const card = helpers.createHtmlElement("div", "audio-game__card", "");
+  root.append(card);
   // just header with name ----------------------------------------
   const audioHeader = helpers.createHtmlElement(
     "h1",
@@ -62,4 +67,5 @@ const audiocallGameFunc = () => {
   return card;
 };
 
-export const audiocallGame = audiocallGameFunc(); // export as html element
+export const audiocallGame = audiocallGameFunc; // export as func
+// export const audiocallGame = audiocallGameFunc(); // export as html element
