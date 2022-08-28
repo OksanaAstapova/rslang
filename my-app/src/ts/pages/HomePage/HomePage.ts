@@ -8,14 +8,14 @@ class HomePage extends Page {
       .node;
     const homePageText = new Component("p", "main__text", "").node;
     homePageText.innerText =
-      "Try the most fun way to learn English language ​​with the help of electronic textbook and games. Play games, listen to pronunciation, improve your knowledge.";
+      "Learn English in the funniest way ​​with the help of electronic textbook and games. Play games, listen to pronunciation, improve your knowledge.";
     const homePageImage = new Component("img", "main__image", "", {
       src: "../../../images/england.png",
     }).node;
     const homePageButton = new Component(
       "button",
       "main__button",
-      "Go to study"
+      "Let's go!"
     ).node;
 
     conteinerInner.appendChild(homePageText);
