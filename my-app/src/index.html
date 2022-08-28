@@ -44,6 +44,7 @@
               </li>
             </ul>
           </nav>
+          <div class="autorization-name"></div>
           <div class="login__conteiner">
             <button class="footer__button-login">Log In</button>
             <p class="footer__button-register">Register</p>
@@ -57,12 +58,13 @@
           <div class="shape"></div>
         </div>
         <form>
+        <div class="close-autorization">X</div>
           <h3>Login</h3>
           <label for="username">Username</label>
           <input type="text" placeholder="Email" id="username" />
           <label for="password">Password</label>
           <input type="password" placeholder="Password" id="password" />
-          <button class="login__button">Log In</button>
+          <button class="login__button" id = "submit-login">Log In</button>
         </form>
       </div>
       <div class="wrapper__register display-none">
@@ -71,14 +73,15 @@
           <div class="shape"></div>
         </div>
         <form class="form_register">
+        <div class="close-autorization">X</div>
           <h3>Register</h3>
           <label for="username1">Username</label>
-          <input type="text" placeholder="Enter username" id="username1" />
+          <input type="text" placeholder="Enter username" id="username1" required>
           <label for="email">Email</label>
-          <input type="email" placeholder="Enter email" id="email" />
+          <input type="email" placeholder="Enter email" id="email" required>
           <label for="password1">Password</label>
-          <input type="password" placeholder="Enter Password" id="password1" />
-          <button class="login__button">Register</button>
+          <input type="password" placeholder="Enter Password" id="password1" required minlength="8">
+          <button class="login__button" id = "submit-registration">Register</button>
         </form>
       </div>
     </header>
