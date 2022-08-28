@@ -9,6 +9,8 @@ export const switchLang = () => {
     enButton.disabled = false;
 
     intoRu();
+    localStorage.setItem('en', 'hide');
+    localStorage.setItem('ru', 'appear');
   });
 
   enButton.addEventListener("click", () => {
@@ -19,7 +21,7 @@ export const switchLang = () => {
   });
 };
 
-export const intoRu = async () => {
+export const intoRu = () => {
   const cards = card_wrapper.children;
   console.log(cards);
 
@@ -28,6 +30,7 @@ export const intoRu = async () => {
     const en = cards[i].children[2].children[2];
     en.classList.add("hide");
     ru.classList.remove("hide");
+    
   }
 };
 

@@ -10,6 +10,8 @@ export const loadStorage = () => {
     const prev = pagination.children[1] as HTMLButtonElement;
     const next = pagination.children[3] as HTMLButtonElement;
     const last = pagination.children[4] as HTMLButtonElement;
+    const enButton = document.querySelector(".en") as HTMLButtonElement;
+    const ruButton = document.querySelector(".ru") as HTMLButtonElement;
 
     let level = '0';
       let page = '0';
@@ -64,7 +66,7 @@ export const loadStorage = () => {
       }
 
       if(+page > 0){
-        
+
         prev.disabled = false;
         first.disabled = false;
         if(+page === 29){
@@ -72,6 +74,10 @@ export const loadStorage = () => {
             last.disabled = true;
 
         }
+      }
+      if(ru == 'appear'){
+        enButton.disabled = false;
+        ruButton.disabled = true;
       }
       pageInner.innerHTML = `${+page + 1}`;
       
