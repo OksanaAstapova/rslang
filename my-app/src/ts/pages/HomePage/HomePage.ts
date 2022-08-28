@@ -1,5 +1,6 @@
 import Component from "../../template/Component";
 import Page from "../../template/Page";
+import { createUser, loginUser } from "./autorization";
 
 class HomePage extends Page {
   render() {
@@ -56,6 +57,8 @@ class HomePage extends Page {
         wrapperLogin.classList.add("display-none");
       })
     })
+    createUser();
+    loginUser();
   }
 }
 
