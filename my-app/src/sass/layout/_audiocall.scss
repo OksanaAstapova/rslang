@@ -1,0 +1,68 @@
+// $fa-font-path: './sass/fontawesome-free-6.1.2-web/webfonts'; // font awesome fonts path
+@import "../fontawesome-free-6.1.2-web/scss/solid.scss";
+
+// audiocall
+/* SCSS HEX */
+$rich-black-fogra-29: #001524ff;
+$ming: #15616dff;
+$blanched-almond: #ffecd1ff;
+$amber-sae-ece: #ff7d00ff;
+$kobe: #78290fff;
+/* custom colours*/
+$background-color: $rich-black-fogra-29;
+$primary-color: $blanched-almond;
+$secondary-color: $ming;
+$tertiary-color: $kobe;
+$font-color: $amber-sae-ece;
+// ---- COLORS - finish --------------------------------
+
+// ---  MIXINS - start ---------------------------------
+@mixin flex-all-centerd_columns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin flex-space-between_rows {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+// ---  MIXINS - finish --------------------------------
+// --- Audiocall SECTION - start ----------------------------
+.audio-game__card {
+  @include flex-all-centerd_columns();
+  background-color: $background-color;
+  color: $font-color;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  width: 100vh;
+  max-width: 1440px;
+}
+
+.audio-game__wrapper {
+  @include flex-space-between_rows();
+  width: 100vh;
+  max-width: 1440px;
+
+  // background-color: $background-color;
+  // color: $font-color;
+}
+
+.audio-card{
+  @include flex-all-centerd_columns();
+  background-color: $secondary-color;
+  color: $font-color;
+  font-weight: 700;
+  height: 300px;
+  min-width: 200px;
+  border-radius: 10px;
+  box-shadow: 8px 8px  $font-color;
+  img {
+    border: 3px solid $font-color;
+  }
+}
+
+// --- Audiocall SECTION - finish ---------------------------
