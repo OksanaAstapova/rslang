@@ -22,7 +22,7 @@ const loginUserAPI = async (user: any) => {
     });
     const content = await rawResponse.json();
   
-    console.log(content);
+    return content;
   };
 
 export const createUser = () => {
@@ -32,12 +32,12 @@ export const createUser = () => {
     const password = document.querySelector('#password1') as HTMLInputElement;
     const registerLogin = document.querySelector(".wrapper__register") as HTMLElement;
 
-    submit.addEventListener('click', ()=>{
+    submit.addEventListener('click', (e)=>{
+      e.preventDefault()
         
-        const user = {  "email": email.value, 
+        const user = {  "name": login.value,
+                        "email": email.value, 
                         "password": password.value }
-
-                        
 
         if(password.value.length > 7 && email.value.includes('@')){
             console.log(user)
@@ -54,12 +54,22 @@ export const loginUser = () => {
     const submit = document.querySelector('#submit-login') as HTMLButtonElement;
     const login = document.querySelector('#username') as HTMLInputElement;
     const password = document.querySelector('#password') as HTMLInputElement;
+    const wrapperLogin = document.querySelector(".wrapper__login") as HTMLElement;
+    const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
+    const loginName = document.querySelector(".autorization-name") as HTMLElement;
 
-    submit.addEventListener('click', () => {
+
+    submit.addEventListener('click', async (e) => {
+      e.preventDefault()
         console.log('*')
-        const user = {  "login": login.value,
+        const user = {  "email": login.value,
                         "password": password.value }
-                        createUserAPI(user)
+      const content = await loginUserAPI(user)
+      console.log(content.name)
+      localStorage.setItem('token', content.token);
+      wrapperLogin.style.display = 'none';
+      containerLogin.style.display = 'none';
+      loginName.innerHTML =`Hello, ${content.name}!`
     })
 
 }
