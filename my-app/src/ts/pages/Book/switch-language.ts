@@ -18,6 +18,8 @@ export const switchLang = () => {
     enButton.disabled = true;
 
     intoEn();
+    localStorage.setItem('ru', 'hide');
+    localStorage.setItem('en', 'appear');
   });
 };
 
