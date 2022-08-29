@@ -1,11 +1,18 @@
-import Component from '../../template/Component';
-import Page from '../../template/Page';
+import { root } from "../../router";
+import Component from "../../template/Component";
+import Page from "../../template/Page";
+import { createBookContent } from "./create-content";
 
 class BookPage extends Page {
   render() {
-    document.body.className = 'body';
-    return new Component('p', '', '\n book page').node;
+    root.innerHTML = "";
+
+    createBookContent();
+
+    document.body.className = "body";
+    return new Component("h1", "book-title", "\n Book").node;
   }
 }
 
 export default new BookPage();
+
