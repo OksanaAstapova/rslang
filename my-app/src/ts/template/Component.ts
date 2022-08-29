@@ -17,4 +17,7 @@ export default class Component<NodeType extends HTMLElement = HTMLElement> {
     }
     this.node = el as NodeType;
   }
+  public destroy(): void {
+    this.node.remove();
+  }
 }
