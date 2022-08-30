@@ -10,3 +10,4 @@ export default class App {
     window.addEventListener("hashchange", () => router());
   }
 }
+

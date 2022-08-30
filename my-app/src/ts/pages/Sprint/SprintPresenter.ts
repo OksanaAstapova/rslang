@@ -2,6 +2,7 @@ import { audioStart } from "../../utils";
 import { Words } from "../../template/interfaces";
 import SprintModel from "./SprintModel";
 import SprintView from "./SprintView";
+import router from "../../router";
 
 export default class SprintPresenter {
   level:string = 'any';
@@ -23,20 +24,31 @@ export default class SprintPresenter {
     this.view.renderResultsPage(this.model.arrayTranscr);
   }
 
+/*   endButtonGame(){
+  
+    })
+  } */
+
   async addQuestion() {
     await this.model.makeQuestionsArray(this.level, this.page);
   }
 
   timer = () => {
-    let sec: number = 61;
+    let sec: number = 11;
     let timeT = <HTMLParagraphElement>document.querySelector('.timer');
-     let sec_timer = setInterval(() => {
-        if(sec > 0){
+    
+    window.addEventListener('hashchange', () => {
+      clearInterval(sec_timer);
+      });
+
+      let sec_timer = setInterval(() => {
+        if (sec > 0){
             sec--;
         } else {
             clearInterval(sec_timer);
             this.endGame()  
         }
+
         if (sec < 10) {
           timeT.innerHTML = `0${sec}`;
         } else {

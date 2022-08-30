@@ -309,9 +309,21 @@ renderCircleBlock = () => {
      alt="sheep"
    />
     `
+this.removeChoiceBlock();
 }
 
-
+removeChoiceBlock(){
+  window.addEventListener('hashchange', () => {
+    console.log('dsfdf')
+    const header = document.querySelector('.header') as HTMLElement;
+    const footer = document.querySelector('.footer') as HTMLElement;
+    header.classList.remove('display-none');
+    footer.classList.remove('display-none');
+    const choiceBlock = document.querySelector('.choice__block') as HTMLElement;
+    choiceBlock.remove();
+    setTimeout(()=> router()) ;
+  })
+}
 
 renderResultsPage = (arrayTranscription:string[]) =>{
 
