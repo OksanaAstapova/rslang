@@ -1,5 +1,6 @@
 import Component from "../../template/Component";
 import Page from "../../template/Page";
+import { createUser, loginUser } from "./autorization";
 
 class HomePage extends Page {
   render() {
@@ -8,14 +9,14 @@ class HomePage extends Page {
       .node;
     const homePageText = new Component("p", "main__text", "").node;
     homePageText.innerText =
-      "Try the most fun way to learn English language ​​with the help of electronic textbook and games. Play games, listen to pronunciation, improve your knowledge.";
+      "Learn English in the funniest way ​​with the help of electronic textbook and games. Play games, listen to pronunciation, improve your knowledge.";
     const homePageImage = new Component("img", "main__image", "", {
       src: "../../../images/england.png",
     }).node;
     const homePageButton = new Component(
       "button",
       "main__button",
-      "Go to study"
+      "Let's go!"
     ).node;
 
     conteinerInner.appendChild(homePageText);
@@ -35,7 +36,8 @@ class HomePage extends Page {
     const registerLogin = document.querySelector(
       ".wrapper__register"
     ) as HTMLElement;
-
+    const closeButtons = document.querySelectorAll('.close-autorization');
+    
     buttonLogin?.addEventListener("click", () => {
       wrapperLogin.classList.toggle("display-none");
       registerLogin.classList.add("display-none");
@@ -48,6 +50,15 @@ class HomePage extends Page {
       registerLogin.classList.toggle("display-none");
       wrapperLogin.classList.add("display-none");
     });
+
+    closeButtons.forEach(close => {
+      close.addEventListener('click', () => {
+        registerLogin.classList.add("display-none");
+        wrapperLogin.classList.add("display-none");
+      })
+    })
+    createUser();
+    loginUser();
   }
 }
 
