@@ -8,7 +8,8 @@ const createUserAPI = async (user: any) => {
       body: JSON.stringify(user)
     });
     const content = await rawResponse.json();
-    console.log (content);
+    console.log(content)
+    return content;
 };
 
 const loginUserAPI = async (user: any) => {
@@ -54,9 +55,7 @@ export const loginUser = () => {
     const submit = document.querySelector('#submit-login') as HTMLButtonElement;
     const login = document.querySelector('#username') as HTMLInputElement;
     const password = document.querySelector('#password') as HTMLInputElement;
-    const wrapperLogin = document.querySelector(".wrapper__login") as HTMLElement;
-    const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
-    const loginName = document.querySelector(".autorization-name") as HTMLElement;
+   
 
 
     submit.addEventListener('click', async (e) => {
@@ -65,13 +64,23 @@ export const loginUser = () => {
         const user = {  "email": login.value,
                         "password": password.value }
       const content = await loginUserAPI(user)
-      console.log(content.name)
+      console.log(content)
       localStorage.setItem('token', content.token);
-      wrapperLogin.style.display = 'none';
-      containerLogin.style.display = 'none';
-      loginName.innerHTML =`Hello, ${content.name}!`
+      localStorage.setItem('refresh-token', content.refreshToken);
+      localStorage.setItem('name', content.name);
+      localStorage.setItem('id', content.userId);
+      displayUserLogin(content.name);
     })
 
 }
 
+export const displayUserLogin = (name: string) =>{
+  const wrapperLogin = document.querySelector(".wrapper__login") as HTMLElement;
+  const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
+  const loginName = document.querySelector(".autorization-name") as HTMLElement;
+
+  wrapperLogin.style.display = 'none';
+  containerLogin.style.display = 'none';
+  loginName.innerHTML =`Hello, ${name}!`
+}
 

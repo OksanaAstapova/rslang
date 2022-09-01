@@ -4,6 +4,14 @@ declare global {
   interface Window {
     playAudio: any;
   }
+
+  interface Window {
+    putDifficult: any;
+  }
+
+  interface Window {
+    removeDifficult: any;
+  }
 }
 
 export const switchLevels = () => {

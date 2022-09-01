@@ -1,3 +1,4 @@
+import { displayUserLogin } from "../HomePage/autorization";
 import { renderWords, pagination } from "./create-content";
 
 export const loadStorage = () => {
@@ -12,11 +13,12 @@ export const loadStorage = () => {
     const last = pagination.children[4] as HTMLButtonElement;
     const enButton = document.querySelector(".en") as HTMLButtonElement;
     const ruButton = document.querySelector(".ru") as HTMLButtonElement;
-
-    let level = '0';
-      let page = '0';
-      let en = 'appear';
-      let ru = 'hide';
+    
+      let level: string = '0';
+      let page: string = '0';
+      let en: string = 'appear';
+      let ru: string = 'hide';
+      let name: string = '';
       let color: string = 'b0a2f9';
 
       for (let i = 0; i < localStorage.length; i++) {
@@ -42,6 +44,10 @@ export const loadStorage = () => {
   
           case 'color':
               color = `${localStorage.getItem(key)}`
+          break;
+
+          case 'name':
+              name = `${localStorage.getItem(key)}`
           break;
         
           
@@ -80,5 +86,8 @@ export const loadStorage = () => {
         ruButton.disabled = true;
       }
       pageInner.innerHTML = `${+page + 1}`;
-      
+
+      if(name !== ''){
+        displayUserLogin(name);
+      }
 }
