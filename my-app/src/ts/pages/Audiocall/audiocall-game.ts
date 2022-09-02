@@ -14,24 +14,12 @@ const dropdownChoise = `
   </div>
   <div class="dropdown-menu" id="dropdown-menu" role="menu">
     <div class="dropdown-content">
-      <a data-level="01" class="dropdown-item">
-        01 Level
-      </a>
-      <a data-level="02" class="dropdown-item">
-        02 Level
-      </a>
-      <a data-level="03" class="dropdown-item is-active">
-        03 Level
-      </a>
-      <a data-level="04" class="dropdown-item">
-        04 Level
-      </a>
-      <a data-level="05" class="dropdown-item">
-        05 Level
-      </a>
-      <a data-level="06" class="dropdown-item">
-        06 Level
-      </a>
+      <a data-level="00" class="dropdown-item">00 Level</a>
+      <a data-level="01" class="dropdown-item">01 Level</a>
+      <a data-level="02" class="dropdown-item">02 Level</a>
+      <a data-level="03" class="dropdown-item">03 Level</a>
+      <a data-level="04" class="dropdown-item">04 Level</a>
+      <a data-level="05" class="dropdown-item">05 Level</a>
     </div>
 </div>`
 
