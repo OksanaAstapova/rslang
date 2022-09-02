@@ -53,6 +53,16 @@ const generateRandomWordsSet5 = (words: Array<WordObj>) => {
   return Array.from(cardWordsSet);
 };
 
+function shuffleDivs(parent: any) {
+  //https://stackoverflow.com/questions/315177/any-way-to-shuffle-content-in-multiple-div-elements
+  const divs = parent.children;
+  const frag = document.createDocumentFragment();
+  while (divs.length) {
+    frag.appendChild(divs[Math.floor(Math.random() * divs.length)]);
+  }
+  parent.appendChild(frag);
+};
+
 export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   
   const cardWordsArr = generateRandomWordsSet5(levelWords);
@@ -89,11 +99,13 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   root.append(card);
 
   const cardContent = document.body.querySelector(".card") as HTMLElement;
-  const answer = document.body.querySelector(".card-footer") as HTMLElement;
-  console.log("card-footer->", answer);
-  answer.addEventListener("click", (e) => {
+  
+  const cardFooter = document.body.querySelector(".card-footer") as HTMLElement;
+  shuffleDivs(cardFooter);
+  cardFooter.addEventListener("click", (e) => {
     if ((e.target as HTMLElement).dataset.answer == "wrong") {
       console.log("Wrong!")
+      createAudiocallCard(levelWords);
     }
     if ((e.target as HTMLElement).dataset.answer == "right") {
       console.log("Right!")
