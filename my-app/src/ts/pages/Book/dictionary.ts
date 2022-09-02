@@ -1,5 +1,5 @@
 import { root } from "../../router";
-import { book_wrapper, createWords, pagination } from "./create-content";
+import { book_wrapper, card_wrapper, createWords, pagination } from "./create-content";
 
 
 export const getfromStorage = (el: any) => {
@@ -126,12 +126,37 @@ export const getDifficulties = () => {
 
     })
 }
+
 window.removeDifficult = removeDifficult;
 
-function removeDifficult(i: number){
+async function removeDifficult(i: number){
   const wordCloseButton = document.getElementById(`difficult-remove ${i}`) as HTMLElement;
   const word = wordCloseButton.parentElement?.parentElement;
+  console.log(word?.id)
   word?.remove();
+
+  let userId: string = '';
+       if (localStorage.length != 0){
+
+        for (let i = 0; i < localStorage.length; i++) {
+          let key = localStorage.key(i);
+        //   console.log(key)  
+
+          if (key == 'id'){
+            userId = `${localStorage.getItem(key)}`
+            // console.log(elem)
+
+          }
+        }}
+
+  const content = await getUserWords(userId);
+  content.forEach((el: any) => {
+    if(el.wordId === word?.id){
+      const id = el.wordId;
+      deleteUserWord(userId, id)
+    }
+  })
+
 }
 
 export const playGames = () => {
@@ -207,6 +232,36 @@ const createUserWord = async ({ userId, wordId, word }: any) => {
     return content;
 
 };
+const deleteUserWord = async (userId: string, wordId: string) => {
+  let token: string = '';
+  if (localStorage.length != 0){
+
+   for (let i = 0; i < localStorage.length; i++) {
+     let key = localStorage.key(i);
+   //   console.log(key)  
+
+     if (key == 'token'){
+       token = `${localStorage.getItem(key)}`
+       // console.log(elem)
+
+     }
+   }}
+  console.log(token)
+
+  const rawResponse = await fetch(`https://rssslang.herokuapp.com/users/${userId}/words/${wordId}`, {
+    method: 'DELETE',
+    headers: {
+      'Authorization':`Bearer ${token}`,
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+  });
+  const content = await rawResponse.json();
+  console.log(content);
+
+  return content;
+
+};
 
    
 const getUserWords = async (userId: string) => {
@@ -238,3 +293,5 @@ const getUserWords = async (userId: string) => {
     console.log(content);
     return content;
   };
+
+  
