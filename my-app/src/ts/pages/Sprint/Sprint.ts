@@ -2,6 +2,7 @@ import Component from '../../template/Component';
 import Page from '../../template/Page';
 import { sprintDescription } from '../../utils';
 import SprintView from "./SprintView";
+import router  from '../../router';
 
 class SprintPage extends Page {
   public currentLevel: undefined | string;
@@ -26,6 +27,7 @@ class SprintPage extends Page {
     const choiceLevelButtons = new Component('div', 'choice__block-buttons').node;
     choiceBlock.append(choiceTextDescription, choiceTitle, choiceLevelButtons);
     const levelArray = ['1', '2', '3', '4', '5', '6'];
+    this.removeLevelsButton();
     levelArray.forEach( el => {
       const levelButton = new Component('button', `choice__block-button button__${el}`, el ).node;
       choiceLevelButtons.append(levelButton);
@@ -39,8 +41,19 @@ class SprintPage extends Page {
     })
 
     rootMain.appendChild(choiceBlock);
+  }
 
-
+  removeLevelsButton(){
+    window.addEventListener('hashchange', () => {
+      console.log('dsfdf')
+      const header = document.querySelector('.header') as HTMLElement;
+      const footer = document.querySelector('.footer') as HTMLElement;
+      header.classList.remove('display-none');
+      footer.classList.remove('display-none');
+      const choiceBlock = document.querySelector('.choice__block') as HTMLElement;
+      choiceBlock.remove();
+      setTimeout(()=> router()) ;
+    })
   }
 }
 
