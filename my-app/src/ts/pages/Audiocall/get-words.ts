@@ -53,7 +53,7 @@ const generateRandomWordsSet5 = (words: Array<WordObj>) => {
   return Array.from(cardWordsSet);
 };
 
-function shuffleDivs(parent: any) {
+function shuffleDivs(parent: HTMLElement) {
   //https://stackoverflow.com/questions/315177/any-way-to-shuffle-content-in-multiple-div-elements
   const divs = parent.children;
   const frag = document.createDocumentFragment();
@@ -77,13 +77,13 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   const cardWord = `<div class="card">
   <audio id='audio' src='https://rssslang.herokuapp.com/${(cardWordsArr[0] as WordObj).audio}'></audio>
   <header class="card-header" onclick=audio.play()>
-    <p class="card-header-title"> Choose the right word</p>
+    <p class="card-header-title"> Click the sound icon to hear the word again</p>
     <button class="card-header-icon" aria-label="sound">
       <span class="icon"> <i class="fas fa-volume-up" aria-hidden="true"></i> </span>
     </button>
   </header>
   <div class="card-content">
-    <div class="content"> Click the sound icon to hear the word again</div>
+    <div class="content"> Choose the right word translation</div>
   </div>
   <footer class="card-footer">
     <a class="card-footer-item" data-answer="wrong">${(cardWordsArr[1] as WordObj).wordTranslate}</a>
@@ -98,19 +98,26 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   root.innerHTML = ""; // clearing the root element
   root.append(card);
 
-  const cardContent = document.body.querySelector(".card") as HTMLElement;
+  const cardContent = document.body.querySelector(".card-content") as HTMLElement;
+  const rightWord = document.body.querySelector("[data-answer='right']") as HTMLElement;
+  console.log(rightWord)
   
   const cardFooter = document.body.querySelector(".card-footer") as HTMLElement;
   shuffleDivs(cardFooter);
   cardFooter.addEventListener("click", (e) => {
     if ((e.target as HTMLElement).dataset.answer == "wrong") {
       console.log("Wrong!")
-      createAudiocallCard(levelWords);
+      cardContent.innerHTML = "Wrong answer :(";
+      rightWord.style.backgroundColor = "#ff7d00ff";
+      setTimeout(() => createAudiocallCard(levelWords), 1000);
     }
     if ((e.target as HTMLElement).dataset.answer == "right") {
       console.log("Right!")
-      alert("Right answer!");
-      createAudiocallCard(levelWords);
+      rightWord.style.backgroundColor = "#ADFF2F";
+      cardContent.style.backgroundColor = "#ADFF2F";
+      // cardContent.innerHTML = ${};
+      cardContent.innerHTML = "RIGHT!";
+      setTimeout(() => createAudiocallCard(levelWords), 1000);
     }
 
   })
