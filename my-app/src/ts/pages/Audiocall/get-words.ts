@@ -79,6 +79,11 @@ function countRound() {
   counter = --counter;
 };
 
+const audioStatisticaObj = {  
+  wins:[],
+  lost:[],
+}
+
 export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   
   const cardWordsArr = generateRandomWordsSet5(levelWords);

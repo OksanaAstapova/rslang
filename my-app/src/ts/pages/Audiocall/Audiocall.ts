@@ -44,7 +44,8 @@ class AudiocallPage extends Page {
     });
 
     document.body.className = "body";
-    return new Component("h1", "audio-header", "Audiocall Game").node;
+    return new Component("h1", "audio-header", "").node;
+    // return new Component("h1", "audio-header", "Audiocall Game").node;
     // return new Component("", "", "").node;
     // return new Component("p", "", "\n About page").node;
   }
