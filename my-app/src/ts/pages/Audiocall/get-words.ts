@@ -63,6 +63,19 @@ function shuffleDivs(parent: HTMLElement) {
   parent.appendChild(frag);
 };
 
+function audioStatistic() {
+  root.innerHTML = ""; // clearing the root element
+  alert ("Game over!")
+}
+
+let counter = 5; // set MAX count of rounds
+function countRound() {
+  if (!counter) {
+    audioStatistic();
+  }
+  counter = --counter;
+};
+
 export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   
   const cardWordsArr = generateRandomWordsSet5(levelWords);
@@ -106,21 +119,23 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   shuffleDivs(cardFooter);
   cardFooter.addEventListener("click", (e) => {
     if ((e.target as HTMLElement).dataset.answer == "wrong") {
-      console.log("Wrong!")
+      console.log(`counter ${counter}`)
       cardContent.innerHTML = "Wrong answer :(";
       rightWord.style.backgroundColor = "#ff7d00ff";
-      setTimeout(() => createAudiocallCard(levelWords), 1000);
+      countRound();
+      if (counter) {
+        setTimeout(() => createAudiocallCard(levelWords), 1000);
+      } else {setTimeout(() => audioStatistic(), 1000)}
     }
     if ((e.target as HTMLElement).dataset.answer == "right") {
-      console.log("Right!")
+      // console.log("Right!")
       rightWord.style.backgroundColor = "#ADFF2F";
       cardContent.style.backgroundColor = "#ADFF2F";
-      // cardContent.innerHTML = ${};
       cardContent.innerHTML = "RIGHT!";
-      setTimeout(() => createAudiocallCard(levelWords), 1000);
+      countRound();
+      if (counter) {
+        setTimeout(() => createAudiocallCard(levelWords), 1000);
+      }else { setTimeout(() => audioStatistic(), 1000)}
     }
-
   })
-
-  // return card;
 };
