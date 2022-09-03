@@ -78,7 +78,7 @@ export const switchLevels = () => {
      for (const id of ids) {
       if(card.id === id){
         const button = card.children[0].children[0] as HTMLStyleElement;
-        button.style.backgroundColor = 'red'
+        button.style.backgroundColor = 'red' 
       }
      }
       
