@@ -1,8 +1,14 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
+import { getWordIdFromStorage } from "./dictionary";
+
 declare global {
   
   interface Window {
     playAudio: any;
+  }
+
+  interface Window {
+    playAudioDiff: any;
   }
 
   interface Window {
@@ -18,7 +24,7 @@ export const switchLevels = () => {
   const levels = document.querySelector(".left-panel") as HTMLElement;
   const dictionaryButton = document.querySelector('.dictionary') as HTMLButtonElement;
 
-  levels.addEventListener("click", (e) => {
+  levels.addEventListener("click", async (e) => {
     const target = e.target as HTMLButtonElement;
 
     const buttons = document.querySelectorAll(".left-panel button");
@@ -57,31 +63,68 @@ export const switchLevels = () => {
       ru = `appear`;
       en = `hide`;
     }
-    renderWords(0, level, en, ru, color);
+    await renderWords(0, level, en, ru, color);
 
     localStorage.setItem('level', target.id);
     localStorage.setItem('en', en);
     localStorage.setItem('ru', ru);
     localStorage.setItem('color', color);
 
+    const wordsIds = getWordIdFromStorage();
+    let ids = wordsIds.split(',')
+    const cards = card_wrapper.children;
+  
+    for (const card of cards) {
+     for (const id of ids) {
+      if(card.id === id){
+        const button = card.children[0].children[0] as HTMLStyleElement;
+        button.style.backgroundColor = 'red'
+      }
+     }
+      
+    }
+
   });
+
+ 
 
 };
 
 window.playAudio = playAudio;
+window.playAudioDiff = playAudioDiff;
 
 function playAudio(i: number) {
 
   const sound = document.getElementById(`audio ${i}`) as HTMLAudioElement;
+  const soundDiff = document.getElementById(`audio-diff ${i}`) as HTMLAudioElement;
   const soundExample = document.getElementById(`audioExample ${i}`) as HTMLAudioElement;
+  const soundExampleDiff = document.getElementById(`audioExample-diff ${i}`) as HTMLAudioElement;
   const soundMeaning = document.getElementById(`audioMeaning ${i}`) as HTMLAudioElement;
-  sound.play();
+  const soundMeaningDiff = document.getElementById(`audioMeaning-diff ${i}`) as HTMLAudioElement;
   
+  sound.play();
+  soundDiff.play();
   sound.onended = () => {
     soundMeaning.play(); 
   }
   soundMeaning.onended = () => {
     soundExample.play();
+  };
+  
+}
+
+function playAudioDiff(i: number) {
+
+  const soundDiff = document.getElementById(`audio-diff ${i}`) as HTMLAudioElement;
+  const soundExampleDiff = document.getElementById(`audioExample-diff ${i}`) as HTMLAudioElement;
+  const soundMeaningDiff = document.getElementById(`audioMeaning-diff ${i}`) as HTMLAudioElement;
+  
+  soundDiff.play();
+  soundDiff.onended = () => {
+    soundMeaningDiff.play(); 
+  }
+  soundMeaningDiff.onended = () => {
+    soundExampleDiff.play();
   };
   
 }

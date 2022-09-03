@@ -123,12 +123,13 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
   
 }
 .card-wrapper,
-    .difficult{
+.difficult{
       display: flex;
       width: 80vw;
       flex-wrap: wrap;
       gap: 15px;
       min-height: 2060px;
+      justify-content: center;
     
       .card{
         width: 23%;
@@ -155,7 +156,6 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
             cursor: pointer;
             z-index: 2;
             text-align: center;
-            font-style: italic;
           }
 
           [data-tooltip]::after {
@@ -169,6 +169,9 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
             background-color: white;
             opacity: 0;
+            color: black;
+            font-style: italic;
+
           }
 
           [data-tooltip]:hover::after {
@@ -178,17 +181,15 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
           .difficult-word-remove{
             width: 20px;
             height: 20px;
-            border-radius: 50%;
-            border: 3px solid white;
             position: absolute;
-            left: calc(50% - 10px);
-            top: 10px;
-            background-color: white;
+            top: 6px;
             cursor: pointer;
             z-index: 2;
             text-align: center;
             color: red;
             font-weight: 600;
+            font-size: 1.5em;
+            right: 10px;
           }
           
 
@@ -263,8 +264,16 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
         }
         
     
-       }
+      }
+      .diff{
+        height: 500px;
+        width: 30%;
+      }
     }
+
+.difficult{
+  min-height: 70vh;
+}
 .pagination{
   display: flex;
   width: 100%;

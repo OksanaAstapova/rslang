@@ -1,8 +1,7 @@
 import { displayUserLogin } from "../HomePage/autorization";
-import { renderWords, pagination } from "./create-content";
+import { renderWords, pagination, card_wrapper } from "./create-content";
 
-export const loadStorage = () => {
-
+export const loadStorage = async () => {
     const levelButtons = document.querySelectorAll('.left-panel button');
     const dictionaryButton = document.querySelector('.dictionary') as HTMLButtonElement;
     const pageInner = document.querySelector('.page-number') as HTMLElement;
@@ -13,7 +12,9 @@ export const loadStorage = () => {
     const last = pagination.children[4] as HTMLButtonElement;
     const enButton = document.querySelector(".en") as HTMLButtonElement;
     const ruButton = document.querySelector(".ru") as HTMLButtonElement;
+
     
+      let wordsId: string = '';
       let level: string = '0';
       let page: string = '0';
       let en: string = 'appear';
@@ -49,12 +50,18 @@ export const loadStorage = () => {
           case 'name':
               name = `${localStorage.getItem(key)}`
           break;
+
+          case 'word-id':
+              wordsId = `${JSON.parse(localStorage.getItem(key)!)}`;
+          break;
         
           
         }
   
       }
-      renderWords(+page, +level, en, ru, color);
+      let wordsIds = wordsId.split(',');
+      await renderWords(+page, +level, en, ru, color);
+      const cards = document.querySelectorAll('.card');
 
       for (let button of levelButtons){
        if(button.id === level) {
@@ -89,5 +96,19 @@ export const loadStorage = () => {
 
       if(name !== ''){
         displayUserLogin(name);
+      }
+    
+      for (let i = 0; i < cards.length; i++) {
+        const card = cards[i] as HTMLElement;
+
+        for(let id of wordsIds){
+
+          if(card.id === id){
+            const cardButton = card.children[0].children[0] as HTMLElement;
+            cardButton.style.background = 'red';
+          }
+    
+          }
+    
       }
 }
