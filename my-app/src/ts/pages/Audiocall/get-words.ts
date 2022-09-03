@@ -1,6 +1,7 @@
 // helpers audiocall
 import * as helpers from "../AboutTeam/helpers";
 import { root } from "../../router";
+import { audiocallGame } from "./audiocall-game";
 
 export interface WordObj {
   id: string;
@@ -65,13 +66,15 @@ function shuffleDivs(parent: HTMLElement) {
 
 function audioStatistic() {
   root.innerHTML = ""; // clearing the root element
-  alert ("Game over!")
+  alert("Game over!");
+  // audiocallGame();
 }
 
-let counter = 5; // set MAX count of rounds
+const MAX_ROUNDS = 5;
+let counter = MAX_ROUNDS; // set MAX count of rounds
 function countRound() {
   if (!counter) {
-    audioStatistic();
+    // audioStatistic();
   }
   counter = --counter;
 };
@@ -117,15 +120,23 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
   
   const cardFooter = document.body.querySelector(".card-footer") as HTMLElement;
   shuffleDivs(cardFooter);
+
+  function checkForCounterAndCreateCard() {
+    if (counter) {
+      setTimeout(() => createAudiocallCard(levelWords), 1000);
+    } else {
+      setTimeout(() => audioStatistic(), 1000);
+      counter = MAX_ROUNDS;
+    }
+  }
+
   cardFooter.addEventListener("click", (e) => {
     if ((e.target as HTMLElement).dataset.answer == "wrong") {
       console.log(`counter ${counter}`)
       cardContent.innerHTML = "Wrong answer :(";
       rightWord.style.backgroundColor = "#ff7d00ff";
       countRound();
-      if (counter) {
-        setTimeout(() => createAudiocallCard(levelWords), 1000);
-      } else {setTimeout(() => audioStatistic(), 1000)}
+      checkForCounterAndCreateCard();
     }
     if ((e.target as HTMLElement).dataset.answer == "right") {
       // console.log("Right!")
@@ -133,9 +144,7 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
       cardContent.style.backgroundColor = "#ADFF2F";
       cardContent.innerHTML = "RIGHT!";
       countRound();
-      if (counter) {
-        setTimeout(() => createAudiocallCard(levelWords), 1000);
-      }else { setTimeout(() => audioStatistic(), 1000)}
+      checkForCounterAndCreateCard();
     }
   })
 };

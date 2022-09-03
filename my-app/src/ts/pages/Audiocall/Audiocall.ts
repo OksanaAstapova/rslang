@@ -4,8 +4,6 @@ import { audiocallGame } from "./audiocall-game";
 import { root } from '../../router';
 import { randomPage, getWords, createAudiocallCard, WordObj } from "./get-words";
 
-const wrapper = document.body.querySelector("#main__root") as HTMLElement;
-
 class AudiocallPage extends Page {
   render() {
     root.innerHTML = ""; // clearing the wrapper element
