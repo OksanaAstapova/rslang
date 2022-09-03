@@ -1,4 +1,7 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
+import { applyDifficultAppearance } from "./switch-levels";
+import { getfromStorage } from "./dictionary";
+import { showDifficultButton } from "./local-storage";
 
 export const switchPages = () => {
 
@@ -18,8 +21,10 @@ export const switchPages = () => {
     let en = `appear`;
     let ru = `hide`;
   
-    pagination.addEventListener('click', (e) => {
+    pagination.addEventListener('click', async (e) => {
       const target = e.target as HTMLButtonElement;
+
+      
       switch (target.className) {
   
         case 'first':
@@ -46,11 +51,10 @@ export const switchPages = () => {
             en = `hide`;
           }
         
-          renderWords(0, level, en, ru, color);
+          await renderWords(0, level, en, ru, color);
           
           localStorage.setItem('page', '0');
-          localStorage.setItem('en', en);
-          localStorage.setItem('ru', ru);
+          
   
           break;
         
@@ -87,10 +91,9 @@ export const switchPages = () => {
                 en = `hide`;
               }
             
-              renderWords(number, level, en, ru, color);
+             await renderWords(number, level, en, ru, color);
              localStorage.setItem('page', number.toString());
-             localStorage.setItem('en', en);
-            localStorage.setItem('ru', ru);
+             
               
           break;
         
@@ -128,12 +131,10 @@ export const switchPages = () => {
               en = `hide`;
             }
           
-            renderWords(num, level, en, ru, color);
+            await renderWords(num, level, en, ru, color);
 
             localStorage.setItem('page', num.toString());
-            localStorage.setItem('en', en);
-            localStorage.setItem('ru', ru);
-
+           
         break;
   
         case 'last':
@@ -159,14 +160,19 @@ export const switchPages = () => {
             en = `hide`;
           }
         
-          renderWords(29, level, en, ru, color);
+          await renderWords(29, level, en, ru, color);
 
           localStorage.setItem('page', '29');
-          localStorage.setItem('en', en);
-          localStorage.setItem('ru', ru);
-
+          
           break;
       }
+      applyDifficultAppearance();
+      const authorization = getfromStorage('authorization');
+      if(authorization === 'Authenticated'){
+        
+        showDifficultButton();
+  }
+
     })
   }
   

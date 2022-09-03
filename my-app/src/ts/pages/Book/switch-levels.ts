@@ -1,5 +1,6 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
-import { getWordIdFromStorage } from "./dictionary";
+import { getWordIdFromStorage, getfromStorage } from "./dictionary";
+import { showDifficultButton } from "./local-storage";
 
 declare global {
   
@@ -23,6 +24,8 @@ declare global {
 export const switchLevels = () => {
   const levels = document.querySelector(".left-panel") as HTMLElement;
   const dictionaryButton = document.querySelector('.dictionary') as HTMLButtonElement;
+  const first = document.querySelector('.first') as HTMLButtonElement;
+  const prev = document.querySelector('.prev') as HTMLButtonElement;
 
   levels.addEventListener("click", async (e) => {
     const target = e.target as HTMLButtonElement;
@@ -54,6 +57,10 @@ export const switchLevels = () => {
     const page = document.querySelector(".page-number") as HTMLElement;
     page.innerHTML = "1";
 
+    [prev, first].forEach(button =>{
+      button.disabled = true;
+    })
+
     const ruButton = document.querySelector(".ru") as HTMLButtonElement;
 
     let en = `appear`;
@@ -70,10 +77,23 @@ export const switchLevels = () => {
     localStorage.setItem('ru', ru);
     localStorage.setItem('color', color);
 
-    const wordsIds = getWordIdFromStorage();
+    applyDifficultAppearance();
+
+  let authorization = getfromStorage('authorization');
+  if(authorization === 'Authenticated'){
+    
+    showDifficultButton();
+  }
+
+
+  });
+
+};
+
+export const applyDifficultAppearance = () => {
+  const wordsIds = getWordIdFromStorage();
     let ids = wordsIds.split(',')
     const cards = card_wrapper.children;
-  
     for (const card of cards) {
      for (const id of ids) {
       if(card.id === id){
@@ -83,12 +103,7 @@ export const switchLevels = () => {
      }
       
     }
-
-  });
-
- 
-
-};
+}
 
 window.playAudio = playAudio;
 window.playAudioDiff = playAudioDiff;
@@ -96,14 +111,10 @@ window.playAudioDiff = playAudioDiff;
 function playAudio(i: number) {
 
   const sound = document.getElementById(`audio ${i}`) as HTMLAudioElement;
-  const soundDiff = document.getElementById(`audio-diff ${i}`) as HTMLAudioElement;
   const soundExample = document.getElementById(`audioExample ${i}`) as HTMLAudioElement;
-  const soundExampleDiff = document.getElementById(`audioExample-diff ${i}`) as HTMLAudioElement;
   const soundMeaning = document.getElementById(`audioMeaning ${i}`) as HTMLAudioElement;
-  const soundMeaningDiff = document.getElementById(`audioMeaning-diff ${i}`) as HTMLAudioElement;
   
   sound.play();
-  soundDiff.play();
   sound.onended = () => {
     soundMeaning.play(); 
   }

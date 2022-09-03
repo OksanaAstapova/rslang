@@ -1,5 +1,6 @@
 import { displayUserLogin } from "../HomePage/autorization";
 import { renderWords, pagination, card_wrapper } from "./create-content";
+import { applyDifficultAppearance } from "./switch-levels";
 
 export const loadStorage = async () => {
     const levelButtons = document.querySelectorAll('.left-panel button');
@@ -12,9 +13,10 @@ export const loadStorage = async () => {
     const last = pagination.children[4] as HTMLButtonElement;
     const enButton = document.querySelector(".en") as HTMLButtonElement;
     const ruButton = document.querySelector(".ru") as HTMLButtonElement;
-
+    const dictionary = document.querySelector(".dictionary") as HTMLButtonElement;
     
       let wordsId: string = '';
+      let authorization: string = '';
       let level: string = '0';
       let page: string = '0';
       let en: string = 'appear';
@@ -54,14 +56,15 @@ export const loadStorage = async () => {
           case 'word-id':
               wordsId = `${JSON.parse(localStorage.getItem(key)!)}`;
           break;
-        
+
+          case 'authorization':
+              authorization = `${localStorage.getItem(key)}`;
+          break;
           
         }
   
       }
-      let wordsIds = wordsId.split(',');
       await renderWords(+page, +level, en, ru, color);
-      const cards = document.querySelectorAll('.card');
 
       for (let button of levelButtons){
        if(button.id === level) {
@@ -97,18 +100,22 @@ export const loadStorage = async () => {
       if(name !== ''){
         displayUserLogin(name);
       }
-    
-      for (let i = 0; i < cards.length; i++) {
-        const card = cards[i] as HTMLElement;
 
-        for(let id of wordsIds){
-
-          if(card.id === id){
-            const cardButton = card.children[0].children[0] as HTMLElement;
-            cardButton.style.background = 'red';
-          }
-    
-          }
-    
+      if(authorization === 'Authenticated'){
+        dictionary.style.display = 'flex';
+        showDifficultButton()
       }
+    
+      applyDifficultAppearance();
+}
+
+export const showDifficultButton = () => {
+  const cards = card_wrapper.children;
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    const button = card.children[0].children[0] as HTMLButtonElement;
+    button.style.display = 'flex';
+    
+  }
 }

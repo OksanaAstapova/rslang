@@ -49,7 +49,9 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
       }
 
       .dictionary{
-        // display: none;
+        display: none;
+        justify-content: center;
+        align-items: center;
         height: 50px;
           border-radius: 6px;
           width: 33%;
@@ -145,6 +147,7 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
           position:relative;
 
           .difficult-word{
+            display: none;
             width: 20px;
             height: 20px;
             border-radius: 50%;
@@ -333,4 +336,10 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.no-difficulties{
+  font-size: 1.8em;
+  color: white;
+  margin-top: 50px; 
 }

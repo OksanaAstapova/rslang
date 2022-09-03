@@ -52,25 +52,23 @@ export const createUser = () => {
 }
 
 export const loginUser = () => {
-    const submit = document.querySelector('#submit-login') as HTMLButtonElement;
-    const login = document.querySelector('#username') as HTMLInputElement;
-    const password = document.querySelector('#password') as HTMLInputElement;
-   
+  const submit = document.querySelector('#submit-login') as HTMLButtonElement;
+  const login = document.querySelector('#username') as HTMLInputElement;
+  const password = document.querySelector('#password') as HTMLInputElement;
 
-
-    submit.addEventListener('click', async (e) => {
-      e.preventDefault()
-        console.log('*')
-        const user = {  "email": login.value,
-                        "password": password.value }
-      const content = await loginUserAPI(user)
-      console.log(content)
-      localStorage.setItem('token', content.token);
-      localStorage.setItem('refresh-token', content.refreshToken);
-      localStorage.setItem('name', content.name);
-      localStorage.setItem('id', content.userId);
-      displayUserLogin(content.name);
-    })
+  submit.addEventListener('click', async (e) => {
+    e.preventDefault()
+      const user = {  "email": login.value,
+                      "password": password.value }
+    const content = await loginUserAPI(user)
+    console.log(content)
+    localStorage.setItem('token', content.token);
+    localStorage.setItem('refresh-token', content.refreshToken);
+    localStorage.setItem('name', content.name);
+    localStorage.setItem('id', content.userId);
+    localStorage.setItem('authorization', content.message);
+    displayUserLogin(content.name);
+  })
 
 }
 

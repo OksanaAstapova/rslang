@@ -9,7 +9,6 @@ export const book_wrapper = document.createElement("div");
 export const card_wrapper = document.createElement("div") as HTMLElement;
 export const pagination = document.createElement('div');
 
-
 export const createWords: any = async (page: number, group: number) => {
         const rawResponse = await fetch(`https://rssslang.herokuapp.com/words?page=${page}&group=${group}`, {
           method: 'GET',
@@ -83,7 +82,6 @@ export const createBookContent = async () => {
 export const renderWords = async (page: number, level: number, en: string, ru: string, color: string) => {
 
   const content = await createWords(page, level);
-  console.log(content)
   card_wrapper.classList.add('card-wrapper');
   card_wrapper.innerHTML = '';
 

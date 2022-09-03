@@ -57,8 +57,10 @@ export const getDifficulties = () => {
         })
         title.innerText = 'Book';
         diffWrapper.innerHTML = '';
+        diffWrapper.style.display = 'none';
 
       }else{
+        diffWrapper.style.display = 'flex';
         dictionaryButton.classList.add('active');
         [pagination, book_wrapper, en, ru].forEach(el => {
          el.style.display = 'none';
@@ -191,6 +193,11 @@ async function removeDifficult(i: number){
         }
       }
 
+  const diffWords = document.querySelectorAll('.diff');
+  const diffWrapper = document.querySelector('.difficult') as HTMLElement;
+      if(diffWords.length == 0){
+        diffWrapper.innerHTML = `<p class='no-difficulties'>You have no difficult words in your dictionary</p>`;
+      }
 }
 
 export const playGames = () => {
