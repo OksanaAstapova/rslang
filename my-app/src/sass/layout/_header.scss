@@ -1,4 +1,11 @@
+.main{
+    margin-top: 70px;
+}
 .header__contain{
+    position: absolute;
+    left: 10vw;
+    top: 0;
+    margin: 0 auto;
     display: flex;
     flex-direction: row;
     width: 80vw;
