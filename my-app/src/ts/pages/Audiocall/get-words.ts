@@ -49,7 +49,7 @@ function shuffleDivs(parent: HTMLElement) {
   parent.appendChild(frag);
 };
 
-const MAX_ROUNDS = 5;
+const MAX_ROUNDS = 10;
 let counter = MAX_ROUNDS; // set MAX count of rounds
 function countRound() {
   counter = --counter;
