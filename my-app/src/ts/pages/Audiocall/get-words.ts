@@ -2,23 +2,8 @@
 import * as helpers from "../AboutTeam/helpers";
 import { root } from "../../router";
 import { audiocallGame } from "./audiocall-game";
-
-export interface WordObj {
-  id: string;
-  group: number;
-  page: number;
-  word: string;
-  image: string;
-  audio: string;
-  audioMeaning: string;
-  audioExample: string;
-  textMeaning: string;
-  textExample: string;
-  transcription: string;
-  textExampleTranslate: string;
-  textMeaningTranslate: string;
-  wordTranslate: string;
-}
+import { WordObj, StatObj } from "./audio_types";
+import { audioStatistic } from "./audio_stat";
 
 export const getWords = async (page = 0, group = 0) => {
   const rawResponse = await fetch(
@@ -64,68 +49,11 @@ function shuffleDivs(parent: HTMLElement) {
   parent.appendChild(frag);
 };
 
-function audioStatistic(stata: StatObj) {
-  root.innerHTML = ""; // clearing the root element
-  const audioStatCard = `
-  <div class="container is-fluid">
-
-  <div class="notification audio-stat-message">Вы успешно завершили игру Audiocall!</div>
-
-  <div class="card">
-  <header class="card-header">
-    <p class="card-header-title"> Верные ответы </p>
-  </header>
-  <div class="card-content">
-    <div class="content">
-      Вы верно угадали слова: ${stata.wins} слов.
-      <br>
-    </div>
-  </div>
-  <footer class="card-footer">
-    <a href="#" class="card-footer-item">Save</a>
-    <a href="#" class="card-footer-item">Edit</a>
-    <a href="#" class="card-footer-item">Delete</a>
-  </footer>
-</div>
-
-<div class="card">
-<header class="card-header">
-  <p class="card-header-title">Ошибки</p>
-</header>
-<div class="card-content">
-  <div class="content">
-   Вы ошиблись ${stata.lost} раз.
-    <br>
-  </div>
-</div>
-<footer class="card-footer">
-  <a href="#" class="card-footer-item">Save</a>
-  <a href="#" class="card-footer-item">Edit</a>
-  <a href="#" class="card-footer-item">Delete</a>
-</footer>
-</div>
-
-
-</div>
-  `;
-  const card = helpers.createHtmlElement("div", "", audioStatCard);
-  // root.innerHTML = ""; // clearing the root element
-  root.append(card);
-  // alert("Game over!");
-}
-
 const MAX_ROUNDS = 5;
 let counter = MAX_ROUNDS; // set MAX count of rounds
 function countRound() {
   counter = --counter;
 };
-
-interface StatObj {
-  wins: number;
-  lost: number;
-  words_right: Array<WordObj>;
-  words_lost: Array<WordObj>;
-}
 
 export const audioStatisticaObj: StatObj = {
   wins: 0,

@@ -1,7 +1,6 @@
 import * as helpers from "../AboutTeam/helpers";
-import { root } from '../../router';
+import { root } from "../../router";
 import { createWords } from "../Book/create-content";
-
 
 const dropdownChoise = `
   <div class="dropdown-trigger">

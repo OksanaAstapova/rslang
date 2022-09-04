@@ -1,13 +1,9 @@
 import Component from "../../template/Component";
 import Page from "../../template/Page";
 import { audiocallGame } from "./audiocall-game";
-import { root } from '../../router';
-import {
-  randomPage,
-  getWords,
-  createAudiocallCard,
-  WordObj,
-} from "./get-words";
+import { root } from "../../router";
+import { randomPage, getWords, createAudiocallCard } from "./get-words";
+import { WordObj, StatObj } from "./audio_types";
 
 class AudiocallPage extends Page {
   render() {
