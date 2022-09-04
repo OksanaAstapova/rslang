@@ -12,7 +12,7 @@ class AudiocallPage extends Page {
     audiocallGame().then(() => {
       const dropdownContent = document.body.querySelector(".dropdown-menu") as HTMLElement;
       // console.log("dropdown-content->", dropdownContent);
-      dropdownContent.addEventListener("click", (event) => {
+      dropdownContent?.addEventListener("click", (event) => {
 
         const level = (event.target as HTMLElement).innerHTML.split(" ")[0]; // get the level of words - from 0 to 5
         const group = randomPage(); // randomize page number in audiocall
