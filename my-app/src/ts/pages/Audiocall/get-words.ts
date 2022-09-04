@@ -30,13 +30,18 @@ function randomIntFromInterval(min = 0, max = 19) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function arrElRemove(arr: Array<WordObj>, val: WordObj) { 
+  return arr.filter((el) => el != val);
+}
+
 const generateRandomWordsSet5 = (words: Array<WordObj>) => {
   const cardWordsSet = new Set();
   while (cardWordsSet.size < 5) {
     const randomWord = words[randomIntFromInterval()];
     cardWordsSet.add(randomWord);
   }
-  return Array.from(cardWordsSet);
+  const rezult = Array.from(cardWordsSet);
+  return rezult;
 };
 
 function shuffleDivs(parent: HTMLElement) {
