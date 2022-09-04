@@ -65,16 +65,7 @@ export const audioStatisticaObj: StatObj = {
 
 export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
 
-  console.log(
-    "audio stat obj",
-    audioStatisticaObj.wins,
-    audioStatisticaObj.lost,
-    audioStatisticaObj.words_right,
-    audioStatisticaObj.words_lost
-  );
-
   const cardWordsArr = generateRandomWordsSet5(levelWords);
-  // console.log("words for card randome->", cardWordsArr);
 
   const audio1 = new Audio(
     `https://rssslang.herokuapp.com/${(cardWordsArr[0] as WordObj).audio}`
@@ -107,7 +98,7 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
 
   const cardContent = document.body.querySelector(".card-content") as HTMLElement;
   const rightWord = document.body.querySelector("[data-answer='right']") as HTMLElement;
-  console.log(rightWord)
+  // console.log(rightWord)
   
   const cardFooter = document.body.querySelector(".card-footer") as HTMLElement;
   shuffleDivs(cardFooter);
