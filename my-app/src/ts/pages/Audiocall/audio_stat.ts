@@ -15,14 +15,11 @@ export function audioStatistic(stata: StatObj) {
   </header>
   <div class="card-content">
     <div class="content wins">
-      Вы верно угадали слова: ${stata.wins} слов.
+      Вы верно угадали слова: ${stata.wins} раз(а).
       <br>
     </div>
   </div>
   <footer class="card-footer">
-    <a href="#" class="card-footer-item">Save</a>
-    <a href="#" class="card-footer-item">Edit</a>
-    <a href="#" class="card-footer-item">Delete</a>
   </footer>
 </div>
 
@@ -32,14 +29,12 @@ export function audioStatistic(stata: StatObj) {
 </header>
 <div class="card-content">
   <div class="content lost">
-   Вы ошиблись ${stata.lost} раз.
+   Вы ошиблись ${stata.lost} раз(а).
     <br>
   </div>
 </div>
 <footer class="card-footer">
-  <a href="#" class="card-footer-item">Save</a>
-  <a href="#" class="card-footer-item">Edit</a>
-  <a href="#" class="card-footer-item">Delete</a>
+ <a class="card-footer-item audio-stat-message" onclick=window.location.reload();>Играть снова?</a>
 </footer>
 </div>
 
