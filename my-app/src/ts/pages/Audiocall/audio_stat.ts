@@ -7,15 +7,15 @@ export function audioStatistic(stata: StatObj) {
   root.innerHTML = ""; // clearing the root element
   const audioStatCard = `
   <div class="container is-fluid">
-  <div class="notification audio-stat-message">Вы успешно завершили игру Audiocall!</div>
+  <div class="notification audio-stat-message">You finished the Audiocall game!</div>
 
   <div class="card">
   <header class="card-header">
-    <p class="card-header-title"> Верные ответы </p>
+    <p class="card-header-title"> Right answers </p>
   </header>
   <div class="card-content">
     <div class="content wins">
-      Вы верно угадали слова: ${stata.wins} раз(а).
+    You correctly guessed the words: ${stata.wins} times.
       <br>
     </div>
   </div>
@@ -25,19 +25,18 @@ export function audioStatistic(stata: StatObj) {
 
 <div class="card">
 <header class="card-header">
-  <p class="card-header-title">Ошибки</p>
+  <p class="card-header-title">Wrong answers</p>
 </header>
 <div class="card-content">
   <div class="content lost">
-   Вы ошиблись ${stata.lost} раз(а).
+  You guessed the words incorrectly ${stata.lost} times.
     <br>
   </div>
 </div>
 <footer class="card-footer">
- <a class="card-footer-item audio-stat-message" onclick=window.location.reload();>Играть снова?</a>
+ <a class="card-footer-item audio-stat-message" onclick=window.location.reload();>Wanna play again?</a>
 </footer>
 </div>
-
 
 </div>
 `;
