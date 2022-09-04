@@ -64,31 +64,89 @@ function shuffleDivs(parent: HTMLElement) {
   parent.appendChild(frag);
 };
 
-function audioStatistic() {
+function audioStatistic(stata: StatObj) {
   root.innerHTML = ""; // clearing the root element
-  alert("Game over!");
-  // audiocallGame();
+  const audioStatCard = `
+  <div class="container is-fluid">
+
+  <div class="notification audio-stat-message">Вы успешно завершили игру Audiocall!</div>
+
+  <div class="card">
+  <header class="card-header">
+    <p class="card-header-title"> Верные ответы </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      Вы верно угадали слова: ${stata.wins} слов.
+      <br>
+    </div>
+  </div>
+  <footer class="card-footer">
+    <a href="#" class="card-footer-item">Save</a>
+    <a href="#" class="card-footer-item">Edit</a>
+    <a href="#" class="card-footer-item">Delete</a>
+  </footer>
+</div>
+
+<div class="card">
+<header class="card-header">
+  <p class="card-header-title">Ошибки</p>
+</header>
+<div class="card-content">
+  <div class="content">
+   Вы ошиблись ${stata.lost} раз.
+    <br>
+  </div>
+</div>
+<footer class="card-footer">
+  <a href="#" class="card-footer-item">Save</a>
+  <a href="#" class="card-footer-item">Edit</a>
+  <a href="#" class="card-footer-item">Delete</a>
+</footer>
+</div>
+
+
+</div>
+  `;
+  const card = helpers.createHtmlElement("div", "", audioStatCard);
+  // root.innerHTML = ""; // clearing the root element
+  root.append(card);
+  // alert("Game over!");
 }
 
 const MAX_ROUNDS = 5;
 let counter = MAX_ROUNDS; // set MAX count of rounds
 function countRound() {
-  if (!counter) {
-    // audioStatistic();
-  }
   counter = --counter;
 };
 
-const audioStatisticaObj = {  
-  wins:[],
-  lost:[],
+interface StatObj {
+  wins: number;
+  lost: number;
+  words_right: Array<WordObj>;
+  words_lost: Array<WordObj>;
 }
 
+export const audioStatisticaObj: StatObj = {
+  wins: 0,
+  lost: 0,
+  words_right: [],
+  words_lost: [],
+};
+
+
 export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
-  
+
+  console.log(
+    "audio stat obj",
+    audioStatisticaObj.wins,
+    audioStatisticaObj.lost,
+    audioStatisticaObj.words_right,
+    audioStatisticaObj.words_lost
+  );
+
   const cardWordsArr = generateRandomWordsSet5(levelWords);
-  console.log("words for card randome->", cardWordsArr);
-  // console.log("words for card randome->", (cardWordsArr[1] as any).word);
+  // console.log("words for card randome->", cardWordsArr);
 
   const audio1 = new Audio(
     `https://rssslang.herokuapp.com/${(cardWordsArr[0] as WordObj).audio}`
@@ -130,7 +188,7 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
     if (counter) {
       setTimeout(() => createAudiocallCard(levelWords), 1000);
     } else {
-      setTimeout(() => audioStatistic(), 1000);
+      setTimeout(() => audioStatistic(audioStatisticaObj), 1000);
       counter = MAX_ROUNDS;
     }
   }
@@ -140,6 +198,8 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
       console.log(`counter ${counter}`)
       cardContent.innerHTML = "Wrong answer :(";
       rightWord.style.backgroundColor = "#ff7d00ff";
+      audioStatisticaObj.lost += 1;
+      audioStatisticaObj.words_lost.push(cardWordsArr[0] as WordObj);
       countRound();
       checkForCounterAndCreateCard();
     }
@@ -148,6 +208,8 @@ export const createAudiocallCard = async (levelWords: Array<WordObj>) => {
       rightWord.style.backgroundColor = "#ADFF2F";
       cardContent.style.backgroundColor = "#ADFF2F";
       cardContent.innerHTML = "RIGHT!";
+      audioStatisticaObj.wins += 1; // add 1 to wins count
+      audioStatisticaObj.words_right.push(cardWordsArr[0] as WordObj); // add right word to array
       countRound();
       checkForCounterAndCreateCard();
     }
