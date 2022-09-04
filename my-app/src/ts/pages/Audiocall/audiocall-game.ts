@@ -30,7 +30,7 @@ const audiocallGameFunc = async () => {
   const audioHeader = helpers.createHtmlElement(
     "h1",
     "audio-header",
-    "Игра: Аудиовызов"
+    "Game: Audiocall"
   );
   card.append(audioHeader);
 
