@@ -229,7 +229,7 @@ function putDifficult(i: number): void{
         word: { "difficulty": "hard", 
         "optional": {testFieldString: 'test', testFieldBoolean: true} }
     });
-    const wordsIds = getWordIdFromStorage('learnt-id');
+      const wordsIds = getWordIdFromStorage('learnt-id');
       let ids = wordsIds.split(',')
       ids.forEach(id => {
         localStorageIds.push(id)
@@ -293,16 +293,17 @@ const getUserWords = async (userId: string) => {
   };
   window.putLearnt = putLearnt;
 
-  const learntWords: (string | undefined)[] = [];
+  let learntWords: (string | undefined)[] = [];
 
-  function putLearnt(i: number): void{
+function putLearnt(i: number): void{
     const cards = card_wrapper.children;
+    const train = document.querySelector('.train') as HTMLButtonElement;
     const button = document.getElementById(`learnt-word ${i}`) as HTMLElement;
     const card = button.parentElement?.parentElement;
     const wordId = card?.id
 
     if (card?.classList.contains('learnt')){
-
+    
       const wordsIds = getWordIdFromStorage('learnt-id');
       let ids = wordsIds.split(',')
       ids.forEach(id => {
@@ -319,7 +320,14 @@ const getUserWords = async (userId: string) => {
         }
       }
 
+      
+        train.disabled = false;
+        card_wrapper.style.backgroundColor = '#001524';
+  
+      
+
     }else{
+    
       const wordsIds = getWordIdFromStorage('learnt-id');
       let ids = wordsIds.split(',')
       ids.forEach(id => {
@@ -327,6 +335,8 @@ const getUserWords = async (userId: string) => {
       })
 
       learntWords.push(wordId);
+      let set = new Set(learntWords)
+      learntWords = Array.from(set);
       localStorage.setItem("learnt-id", JSON.stringify(learntWords));
 
       for (const card of cards) {
@@ -335,6 +345,19 @@ const getUserWords = async (userId: string) => {
 
         }
       }
+      
     }
-  }
+    isLearnt();
+    
 
+}
+
+export const isLearnt = () => {
+  const learnt = document.querySelectorAll('.learnt')
+  const train = document.querySelector('.train') as HTMLButtonElement;
+
+  if(learnt.length === 20){
+    train.disabled = true;
+    card_wrapper.style.backgroundColor = '#b0a2f9';
+  }
+}

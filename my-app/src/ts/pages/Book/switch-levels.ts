@@ -1,5 +1,5 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
-import { getWordIdFromStorage, getfromStorage } from "./dictionary";
+import { getWordIdFromStorage, getfromStorage, isLearnt } from "./dictionary";
 import { showAuthorizedButton } from "./local-storage";
 
 declare global {
@@ -120,11 +120,11 @@ export const applyLearntAppearance = () => {
      for (const id of ids) {
       if(card.id === id){
         card.classList.add('learnt');
-        console.log(card)
       }
      }
       
     }
+   isLearnt();
 }
 
 window.playAudio = playAudio;
