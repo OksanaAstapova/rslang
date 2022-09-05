@@ -165,7 +165,7 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
             content: attr(data-tooltip);
             cursor: none;
             width: 120px;
-            top: 20px;
+            top: 40px;
             position: absolute;
             border-radius: 8px;
             padding: 0.5em;
@@ -194,8 +194,23 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
             font-size: 1.5em;
             right: 10px;
           }
-          
 
+          .learnt-word{
+            display: none;
+            position: absolute;
+            right: 5px;
+            cursor: pointer;
+            z-index: 2;
+
+              p{
+                margin-top: -8px;
+                font-size: 1.8em;
+                font-weight: 1000;
+                text-shadow: 1px 1px black;
+                color: $amber-sae-ece;
+              }
+          }
+          
           img{
             width: 100%;
             height: 100%;
@@ -342,4 +357,8 @@ $sticky-pagination: rgba(0, 21, 36, 0.766);
   font-size: 1.8em;
   color: white;
   margin-top: 50px; 
+}
+
+.learnt{
+  border: 5px solid $amber-sae-ece;
 }

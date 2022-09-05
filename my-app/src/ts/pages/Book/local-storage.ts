@@ -1,6 +1,6 @@
 import { displayUserLogin } from "../HomePage/autorization";
 import { renderWords, pagination, card_wrapper } from "./create-content";
-import { applyDifficultAppearance } from "./switch-levels";
+import { applyDifficultAppearance, applyLearntAppearance } from "./switch-levels";
 
 export const loadStorage = async () => {
     const levelButtons = document.querySelectorAll('.left-panel button');
@@ -16,6 +16,7 @@ export const loadStorage = async () => {
     const dictionary = document.querySelector(".dictionary") as HTMLButtonElement;
     
       let wordsId: string = '';
+      let learntId: string = '';
       let authorization: string = '';
       let level: string = '0';
       let page: string = '0';
@@ -55,6 +56,10 @@ export const loadStorage = async () => {
 
           case 'word-id':
               wordsId = `${JSON.parse(localStorage.getItem(key)!)}`;
+          break;
+
+          case 'learnt-id':
+              learntId = `${JSON.parse(localStorage.getItem(key)!)}`;
           break;
 
           case 'authorization':
@@ -103,18 +108,20 @@ export const loadStorage = async () => {
 
       if(authorization === 'Authenticated'){
         dictionary.style.display = 'flex';
-        showDifficultButton()
+        showAuthorizedButton(0);
+        showAuthorizedButton(1);
       }
     
       applyDifficultAppearance();
+      applyLearntAppearance();
 }
 
-export const showDifficultButton = () => {
+export const showAuthorizedButton = (num: number) => {
   const cards = card_wrapper.children;
 
   for (let i = 0; i < cards.length; i++) {
     const card = cards[i];
-    const button = card.children[0].children[0] as HTMLButtonElement;
+    const button = card.children[0].children[num] as HTMLButtonElement;
     button.style.display = 'flex';
     
   }

@@ -1,6 +1,6 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
 import { getWordIdFromStorage, getfromStorage } from "./dictionary";
-import { showDifficultButton } from "./local-storage";
+import { showAuthorizedButton } from "./local-storage";
 
 declare global {
   
@@ -14,6 +14,10 @@ declare global {
 
   interface Window {
     putDifficult: any;
+  }
+
+  interface Window {
+    putLearnt: any;
   }
 
   interface Window {
@@ -76,13 +80,16 @@ export const switchLevels = () => {
     localStorage.setItem('en', en);
     localStorage.setItem('ru', ru);
     localStorage.setItem('color', color);
+    localStorage.setItem('page', '0');
 
     applyDifficultAppearance();
+    applyLearntAppearance();
 
   let authorization = getfromStorage('authorization');
   if(authorization === 'Authenticated'){
     
-    showDifficultButton();
+    showAuthorizedButton(0);
+    showAuthorizedButton(1);
   }
 
 
@@ -91,7 +98,7 @@ export const switchLevels = () => {
 };
 
 export const applyDifficultAppearance = () => {
-  const wordsIds = getWordIdFromStorage();
+  const wordsIds = getWordIdFromStorage('word-id');
     let ids = wordsIds.split(',')
     const cards = card_wrapper.children;
     for (const card of cards) {
@@ -99,6 +106,21 @@ export const applyDifficultAppearance = () => {
       if(card.id === id){
         const button = card.children[0].children[0] as HTMLStyleElement;
         button.style.backgroundColor = 'red' 
+      }
+     }
+      
+    }
+}
+
+export const applyLearntAppearance = () => {
+  const wordsIds = getWordIdFromStorage('learnt-id');
+    let ids = wordsIds.split(',')
+    const cards = card_wrapper.children;
+    for (const card of cards) {
+     for (const id of ids) {
+      if(card.id === id){
+        card.classList.add('learnt');
+        console.log(card)
       }
      }
       

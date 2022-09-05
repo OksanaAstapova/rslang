@@ -1,7 +1,6 @@
 import { root } from "../../router";
 import { book_wrapper, card_wrapper, createWords, pagination } from "./create-content";let localStorageIds: (string | undefined)[] = [];
 
-
 export const getfromStorage = (el: any) => {
 
     let elem: string = '';
@@ -19,7 +18,7 @@ export const getfromStorage = (el: any) => {
     return elem;
 }
 
-export const getWordIdFromStorage = () => {
+export const getWordIdFromStorage = (keys: string) => {
 
   let id: string = '';
   if (localStorage.length != 0){
@@ -27,7 +26,7 @@ export const getWordIdFromStorage = () => {
       for (let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i);
 
-        if (key == 'word-id'){
+        if (key == keys){
           id = `${JSON.parse(localStorage.getItem(key)!)}`;
 
         }
@@ -35,7 +34,6 @@ export const getWordIdFromStorage = () => {
     }
   return id;
 }
-
 
 export const getDifficulties = () => {
     
@@ -100,8 +98,6 @@ export const getDifficulties = () => {
 
        }else{
  
-       
- 
        for (let i=0; i < difficultWords.length; i++){
          const word = difficultWords[i];
          const card = `<div class='card diff' id='${word.id}'>
@@ -149,8 +145,6 @@ export const getDifficulties = () => {
        root.appendChild(diffWrapper);
       }
     }
-  
-
     })
 }
 
@@ -161,7 +155,7 @@ async function removeDifficult(i: number){
   const word = wordCloseButton.parentElement?.parentElement;
   console.log(word?.id)
   
-  const wordsIds = getWordIdFromStorage();
+  const wordsIds = getWordIdFromStorage('word-id');
   let ids = wordsIds.split(',')
   ids.forEach(id => {
     if(id === word?.id){
@@ -218,11 +212,9 @@ export const playGames = () => {
 
 }
 
-
 window.putDifficult = putDifficult;
 
-
-function putDifficult(i: number){
+function putDifficult(i: number): void{
 
     const button = document.getElementById(`difficult-word ${i}`) as HTMLElement;
     button.style.backgroundColor = 'red';
@@ -237,21 +229,11 @@ function putDifficult(i: number){
         word: { "difficulty": "hard", 
         "optional": {testFieldString: 'test', testFieldBoolean: true} }
     });
-    if (localStorage.length != 0){
-
-      for (let i = 0; i < localStorage.length; i++) {
-        let key = localStorage.key(i);
-
-        if (key == 'word-id'){
-          let storageWordsId = `${JSON.parse(localStorage.getItem(key)!)}`;
-          const ids = storageWordsId.split(',')
-          // console.log(ids)
-          ids.forEach(id => {
-            localStorageIds.push(id)
-          })
-        }
-      }
-    }
+    const wordsIds = getWordIdFromStorage('learnt-id');
+      let ids = wordsIds.split(',')
+      ids.forEach(id => {
+        localStorageIds.push(id)
+      })
 
       localStorageIds.push(wordId);
       
@@ -259,12 +241,7 @@ function putDifficult(i: number){
       localStorageIds = Array.from(set)
 
       localStorage.setItem("word-id", JSON.stringify(localStorageIds));
-
-      
-
-
 }
-
 
 const createUserWord = async ({ userId, wordId, word }: any) => {
     let token = getfromStorage('token');
@@ -300,8 +277,6 @@ const deleteUserWord = async (userId: string, wordId: string) => {
   return content;
 
 };
-
-   
 const getUserWords = async (userId: string) => {
   let token = getfromStorage('token');
     const rawResponse = await fetch(`https://rssslang.herokuapp.com/users/${userId}/words`, {
@@ -316,5 +291,50 @@ const getUserWords = async (userId: string) => {
   
     return content;
   };
+  window.putLearnt = putLearnt;
 
-  
+  const learntWords: (string | undefined)[] = [];
+
+  function putLearnt(i: number): void{
+    const cards = card_wrapper.children;
+    const button = document.getElementById(`learnt-word ${i}`) as HTMLElement;
+    const card = button.parentElement?.parentElement;
+    const wordId = card?.id
+
+    if (card?.classList.contains('learnt')){
+
+      const wordsIds = getWordIdFromStorage('learnt-id');
+      let ids = wordsIds.split(',')
+      ids.forEach(id => {
+    if(id === wordId){
+      let i = ids.indexOf(id);
+      ids.splice(i, 1);
+    }
+  })
+  localStorage.setItem("learnt-id", JSON.stringify(ids));
+
+      for (const card of cards) {
+        if(card.id === wordId){
+        card.classList.remove('learnt')
+        }
+      }
+
+    }else{
+      const wordsIds = getWordIdFromStorage('learnt-id');
+      let ids = wordsIds.split(',')
+      ids.forEach(id => {
+        learntWords.push(id)
+      })
+
+      learntWords.push(wordId);
+      localStorage.setItem("learnt-id", JSON.stringify(learntWords));
+
+      for (const card of cards) {
+        if(card.id === wordId){
+        card.classList.add('learnt')
+
+        }
+      }
+    }
+  }
+

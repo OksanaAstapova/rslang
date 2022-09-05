@@ -1,7 +1,7 @@
 import { renderWords, card_wrapper, pagination } from "./create-content";
-import { applyDifficultAppearance } from "./switch-levels";
+import { applyDifficultAppearance, applyLearntAppearance } from "./switch-levels";
 import { getfromStorage } from "./dictionary";
-import { showDifficultButton } from "./local-storage";
+import { showAuthorizedButton } from "./local-storage";
 
 export const switchPages = () => {
 
@@ -167,10 +167,13 @@ export const switchPages = () => {
           break;
       }
       applyDifficultAppearance();
+      applyLearntAppearance();
+      
       const authorization = getfromStorage('authorization');
       if(authorization === 'Authenticated'){
         
-        showDifficultButton();
+        showAuthorizedButton(0);
+        showAuthorizedButton(1);
   }
 
     })

@@ -90,6 +90,7 @@ export const renderWords = async (page: number, level: number, en: string, ru: s
             const card = `<div class='card' id='${word.id}'>
               <div class='card-img' >
                 <div class='difficult-word' data-tooltip="difficult word" onclick='putDifficult(${i})' id='difficult-word ${i}'></div>
+                <div class='learnt-word' data-tooltip="learnt word" onclick='putLearnt(${i})' id='learnt-word ${i}'><p>✓</div>
                 <img src='https://rssslang.herokuapp.com/${word.image}' alt='${word.word}'>
               </div>
               <div class='card-audio' onclick='playAudio(${i})'>
