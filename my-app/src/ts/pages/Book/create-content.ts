@@ -4,6 +4,7 @@ import { switchLang } from "./switch-language";
 import { root } from '../../router';
 import { getDifficulties, playGames } from "./dictionary";
 import { loadStorage } from "./local-storage";
+import { clickListener } from "../Audiocall/audiocall_book";
 
 export const book_wrapper = document.createElement("div");
 export const card_wrapper = document.createElement("div") as HTMLElement;
@@ -71,6 +72,7 @@ export const createBookContent = async () => {
     switchPages();
     getDifficulties();
     playGames();
+    clickListener();
 
     if (localStorage.length != 0) {
       loadStorage()
