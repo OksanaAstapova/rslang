@@ -19,6 +19,10 @@ class HomePage extends Page {
       "Let's go!"
     ).node;
 
+    homePageButton.addEventListener('click', () => {
+      document.location.hash = '#/book';
+    })
+
     conteinerInner.appendChild(homePageText);
     conteinerInner.appendChild(homePageButton);
     conteinerHomePage.appendChild(conteinerInner);

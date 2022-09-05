@@ -1,0 +1,45 @@
+
+.statistics__day-title,
+.statistics__games-title{
+    font-size: 45px;
+    text-align: center;
+    margin: 35px;
+}
+
+.day-words__number,
+.day-answear__number{
+    font-size: 30px;
+    margin-left: 50px;
+}
+
+
+
+.statistics__day,
+.statistics__games {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.statistics__day-in,
+.statistics__game-in{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.statistics__game-in{
+    gap: 80px;
+}
+
+.game__audiocall-long,
+.game__sprint-long {
+    width: 200px;
+}
+
+.game__audiocall-title,
+.game__sprint-title{
+    font-size: 30px;
+    margin: 25px;
+}
+
