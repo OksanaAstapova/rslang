@@ -7,7 +7,7 @@ export const loadStorage = async () => {
     const dictionaryButton = document.querySelector('.dictionary') as HTMLButtonElement;
     const pageInner = document.querySelector('.page-number') as HTMLElement;
     const paginationButtons = document.querySelectorAll('.pagination button');
-    const first = pagination.children[0] as HTMLButtonElement;
+    const first = pagination.firstChild as HTMLButtonElement;
     const prev = pagination.children[1] as HTMLButtonElement;
     const next = pagination.children[3] as HTMLButtonElement;
     const last = pagination.children[4] as HTMLButtonElement;
