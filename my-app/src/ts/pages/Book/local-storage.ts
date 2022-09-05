@@ -1,7 +1,8 @@
-import { renderWords, pagination } from "./create-content";
+import { displayUserLogin } from "../HomePage/autorization";
+import { renderWords, pagination, card_wrapper } from "./create-content";
+import { applyDifficultAppearance, applyLearntAppearance } from "./switch-levels";
 
-export const loadStorage = () => {
-
+export const loadStorage = async () => {
     const levelButtons = document.querySelectorAll('.left-panel button');
     const dictionaryButton = document.querySelector('.dictionary') as HTMLButtonElement;
     const pageInner = document.querySelector('.page-number') as HTMLElement;
@@ -12,11 +13,16 @@ export const loadStorage = () => {
     const last = pagination.children[4] as HTMLButtonElement;
     const enButton = document.querySelector(".en") as HTMLButtonElement;
     const ruButton = document.querySelector(".ru") as HTMLButtonElement;
-
-    let level = '0';
-      let page = '0';
-      let en = 'appear';
-      let ru = 'hide';
+    const dictionary = document.querySelector(".dictionary") as HTMLButtonElement;
+    
+      let wordsId: string = '';
+      let learntId: string = '';
+      let authorization: string = '';
+      let level: string = '0';
+      let page: string = '0';
+      let en: string = 'appear';
+      let ru: string = 'hide';
+      let name: string = '';
       let color: string = 'b0a2f9';
 
       for (let i = 0; i < localStorage.length; i++) {
@@ -43,12 +49,27 @@ export const loadStorage = () => {
           case 'color':
               color = `${localStorage.getItem(key)}`
           break;
-        
+
+          case 'name':
+              name = `${localStorage.getItem(key)}`
+          break;
+
+          case 'word-id':
+              wordsId = `${JSON.parse(localStorage.getItem(key)!)}`;
+          break;
+
+          case 'learnt-id':
+              learntId = `${JSON.parse(localStorage.getItem(key)!)}`;
+          break;
+
+          case 'authorization':
+              authorization = `${localStorage.getItem(key)}`;
+          break;
           
         }
   
       }
-      renderWords(+page, +level, en, ru, color);
+      await renderWords(+page, +level, en, ru, color);
 
       for (let button of levelButtons){
        if(button.id === level) {
@@ -80,5 +101,28 @@ export const loadStorage = () => {
         ruButton.disabled = true;
       }
       pageInner.innerHTML = `${+page + 1}`;
-      
+
+      if(name !== ''){
+        displayUserLogin(name);
+      }
+
+      if(authorization === 'Authenticated'){
+        dictionary.style.display = 'flex';
+        showAuthorizedButton(0);
+        showAuthorizedButton(1);
+      }
+    
+      applyDifficultAppearance();
+      applyLearntAppearance();
+}
+
+export const showAuthorizedButton = (num: number) => {
+  const cards = card_wrapper.children;
+
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
+    const button = card.children[0].children[num] as HTMLButtonElement;
+    button.style.display = 'flex';
+    
+  }
 }

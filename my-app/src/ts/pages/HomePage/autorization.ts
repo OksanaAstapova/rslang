@@ -8,7 +8,8 @@ const createUserAPI = async (user: any) => {
       body: JSON.stringify(user)
     });
     const content = await rawResponse.json();
-    console.log (content);
+    console.log(content)
+    return content;
 };
 
 const loginUserAPI = async (user: any) => {
@@ -51,27 +52,44 @@ export const createUser = () => {
 }
 
 export const loginUser = () => {
-    const submit = document.querySelector('#submit-login') as HTMLButtonElement;
-    const login = document.querySelector('#username') as HTMLInputElement;
-    const password = document.querySelector('#password') as HTMLInputElement;
-    const wrapperLogin = document.querySelector(".wrapper__login") as HTMLElement;
-    const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
-    const loginName = document.querySelector(".autorization-name") as HTMLElement;
+  const submit = document.querySelector('#submit-login') as HTMLButtonElement;
+  const login = document.querySelector('#username') as HTMLInputElement;
+  const password = document.querySelector('#password') as HTMLInputElement;
 
-
-    submit.addEventListener('click', async (e) => {
-      e.preventDefault()
-        console.log('*')
-        const user = {  "email": login.value,
-                        "password": password.value }
-      const content = await loginUserAPI(user)
-      console.log(content.name)
-      localStorage.setItem('token', content.token);
-      wrapperLogin.style.display = 'none';
-      containerLogin.style.display = 'none';
-      loginName.innerHTML =`Hello, ${content.name}!`
-    })
+  submit.addEventListener('click', async (e) => {
+    e.preventDefault()
+      const user = {  "email": login.value,
+                      "password": password.value }
+    const content = await loginUserAPI(user)
+    console.log(content)
+    localStorage.setItem('token', content.token);
+    localStorage.setItem('refresh-token', content.refreshToken);
+    localStorage.setItem('name', content.name);
+    localStorage.setItem('id', content.userId);
+    localStorage.setItem('authorization', content.message);
+    displayUserLogin(content.name);
+  })
 
 }
 
+export const logOutUser = () => {
+  const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
+  const loginName = document.querySelector(".autorization-name") as HTMLElement;
+  
+  containerLogin.style.display = 'flex';
+  loginName.innerHTML = '';
+
+  localStorage.clear();
+}
+window.logOutUser = logOutUser;
+
+export const displayUserLogin = (name: string) =>{
+  const wrapperLogin = document.querySelector(".wrapper__login") as HTMLElement;
+  const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
+  const loginName = document.querySelector(".autorization-name") as HTMLElement;
+
+   wrapperLogin.classList.add('display-none');
+  containerLogin.style.display = 'none';
+  loginName.innerHTML =`<p>Hello, ${name}!</p><div class= "log-out" onclick='logOutUser()'></div>`
+}
 

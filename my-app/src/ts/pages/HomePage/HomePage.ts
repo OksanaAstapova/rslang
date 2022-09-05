@@ -1,6 +1,6 @@
 import Component from "../../template/Component";
 import Page from "../../template/Page";
-import { createUser, loginUser } from "./autorization";
+import { createUser, displayUserLogin, loginUser } from "./autorization";
 
 class HomePage extends Page {
   render() {
@@ -28,11 +28,25 @@ class HomePage extends Page {
     conteinerHomePage.appendChild(conteinerInner);
     conteinerHomePage.appendChild(homePageImage);
 
+    const login  = document.querySelector('.login__conteiner') as HTMLElement;
+    login.style.display = 'flex';
+
     this.login();
     return conteinerHomePage;
   }
 
   login() {
+    if (localStorage.length != 0){
+
+      for (let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i);
+
+        if (key === 'name'){
+          const name = `${localStorage.getItem(key)}`
+          displayUserLogin(name);
+        }
+      }
+    }
     const buttonLogin = document.querySelector(".footer__button-login");
     const wrapperLogin = document.querySelector(
       ".wrapper__login"
