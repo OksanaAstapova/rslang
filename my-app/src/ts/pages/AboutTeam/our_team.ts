@@ -8,18 +8,20 @@ const teamMembers = [
     photo: "./images/team/girl.jpg",
     github: "https://github.com/OksanaAstapova",
     rssCVlink: "",
+    done: `Team/Project Lead - организовала работу команды,  синхронизировала таски по плану. Создала Учебник полностью: уровни, карточки слов, пагинация, раздел "Сложные слова"`
   },
   {
     name: "Юрий",
     photo: "./images/team/boy2.jpg",
     github: "https://github.com/clukva",
-    rssCVlink: "",
+    done: `Создал базовую структуру приложения (роутер), игру "Спринт". Создал базу данных MongoDB и деплой бекенда на heroku.`,
   },
   {
     name: "Дмитрий",
     photo: "./images/team/boy3.jpg",
     github: "https://github.com/dsh91698",
     rssCVlink: "https://app.rs.school/cv/055a0262-7fdc-4348-8783-2c3dac4d9521",
+    done: `Сделал базовую структуру приложения (отклонено командой, заменена на дизайн с роутером), страницу "О команде" и игру "Аудиовызов"`
   },
 ];
 
@@ -60,11 +62,16 @@ const ourTeamFunc = () => {
       avataraClassList,
       ""
     );
+
+    const done = helpers.createHtmlElement("div", "box done", member.done);
+
     const avatara = helpers.createHtmlElement("img", "is-rounded", "");
     (avatara as HTMLImageElement).src = member.photo;
     memberImage.append(avatara);
     cardMember.append(memberImage);
     cardMember.append(githubLink);
+    cardMember.append(done);
+    
 
     membersWrapper.append(cardMember); // add member-card into teamcards wrapper
   });

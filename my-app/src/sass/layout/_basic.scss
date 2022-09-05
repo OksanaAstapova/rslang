@@ -157,16 +157,27 @@ html, body {
 
 .member-card{
   @include flex-all-centerd_columns();
+  justify-content: space-between;
   background-color: $secondary-color;
   color: $font-color;
   font-weight: 700;
-  height: 300px;
+  height: 450px;
   min-width: 200px;
+  max-width: 300px;
+  margin-right: 20px;
   border-radius: 10px;
+  // border: 5px solid $background-color;
   box-shadow: 8px 8px  $font-color;
   img {
     border: 3px solid $font-color;
   }
+}
+
+.done {
+  background-color: $secondary-color;
+  color: $font-color;
+  text-align:justify;
+  height: 210px;
 }
 
 // ---TEAM SECTION - finish ---------------------------
