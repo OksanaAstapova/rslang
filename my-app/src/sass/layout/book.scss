@@ -1,0 +1,364 @@
+$amber-sae-ece: #ff7d00;
+$ming: #15616dff;
+$blanched-almond: #ffecd1ff;
+
+$sticky-pagination: rgba(0, 21, 36, 0.766);
+
+#main__root{
+  min-height: 70vh;
+}
+
+.text-italic{
+    font-style: italic;
+    border-top: 1px dashed gray;
+}
+
+.book-title{
+    font-size: 3em;
+    font-weight: 900;
+    // margin-left: 0 auto;
+    text-align: center;
+    margin: 20px;
+}
+
+.book-buttons{
+    text-align: center;
+    width: 40%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    margin-left: 46vw;
+  
+      button{
+        width: 8%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        font-size: 1.2em;
+        font-weight: 500;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+  
+      .en{
+        background-image: url(../src/images/en_flag.png);
+      }
+      
+      .ru{
+        background-image: url(../src/images/ru_flag.jpg);
+        margin-left: 30px;
+      }
+
+      .dictionary{
+        display: none;
+        justify-content: center;
+        align-items: center;
+        height: 50px;
+          border-radius: 6px;
+          width: 33%;
+          min-width: 175px;
+          cursor: pointer;
+          color: black;
+          font-weight: 500;
+          font-size: 1em;
+          background-color: #b0a2f9;
+          margin-right: 0;
+         margin-left: auto;
+         margin-top: -58px;
+      }
+  }
+
+
+.book-wrapper{
+    margin-top: 33px;
+    display: flex;
+    width: 100vw;
+    min-height: 1810px;
+  
+    .left-panel{
+  
+      width: 20vw;
+      max-height: 390px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+  
+        button{
+          height: 60px;
+          border-radius: 6px;
+          width: 80%;
+          cursor: pointer;
+          color: black;
+          // text-shadow: 1px 1px 1px #000;
+          font-weight: 600;
+
+        }
+
+        
+
+        .A1{
+          background-color: #b0a2f9;
+
+        }
+        .A2{
+          background-color: #18d8da;
+
+        }
+        .B1{
+          background-color: #bbcb2d;
+        }
+        .B2{
+          background-color: #ffd33f;
+        }
+        .C1{
+          background-color: #f4973a;
+        }
+        .C2{
+          background-color: #e770d4;
+        }
+
+        
+    }
+    
+    
+
+  
+}
+.card-wrapper,
+.difficult{
+      display: flex;
+      width: 80vw;
+      flex-wrap: wrap;
+      gap: 15px;
+      min-height: 2060px;
+      justify-content: center;
+    
+      .card{
+        width: 23%;
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+        border-radius: 10px;
+        background-color: white;
+  
+        .card-img{
+          width: 100%;
+          max-height: 50%;
+          position:relative;
+
+          .difficult-word{
+            display: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 3px solid red;
+            position: absolute;
+            left: calc(50% - 10px);
+            top: 10px;
+            background-color: white;
+            cursor: pointer;
+            z-index: 2;
+            text-align: center;
+          }
+
+          [data-tooltip]::after {
+            content: attr(data-tooltip);
+            cursor: none;
+            width: 120px;
+            top: 40px;
+            position: absolute;
+            border-radius: 8px;
+            padding: 0.5em;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            background-color: white;
+            opacity: 0;
+            color: black;
+            font-style: italic;
+
+          }
+
+          [data-tooltip]:hover::after {
+            opacity: 1;
+           }
+
+          .difficult-word-remove{
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            top: 6px;
+            cursor: pointer;
+            z-index: 2;
+            text-align: center;
+            color: red;
+            font-weight: 600;
+            font-size: 1.5em;
+            right: 10px;
+          }
+
+          .learnt-word{
+            display: none;
+            position: absolute;
+            right: 5px;
+            cursor: pointer;
+            z-index: 2;
+
+              p{
+                margin-top: -8px;
+                font-size: 1.8em;
+                font-weight: 1000;
+                text-shadow: 1px 1px black;
+                color: $amber-sae-ece;
+              }
+          }
+          
+          img{
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+          } 
+          
+        }
+        .card-img::after{
+          background: linear-gradient(transparent 100px, white);
+          content: ' ';
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          z-index: 1;
+        }
+          
+        .card-audio{
+          width: 50px;
+          height: 50px;
+          // background-image: url(../src/images/audio.png);
+          // background-size: cover;
+          position: absolute;
+          right: 6px;
+          top: 130px;
+          cursor: pointer;
+          z-index: 2;
+
+          svg{
+            width: 100%; 
+            height: 100%;
+            position: absolute;
+          }
+        }
+  
+        .card-info{
+  
+          margin-left: 5px;
+  
+          .card-title{
+            font-variant: small-caps;
+            font-weight: 900;
+            font-size: 2.3em;
+            position: absolute;
+            color: $amber-sae-ece;
+            text-shadow: 2px 2px rgb(14, 14, 13);
+            top: 120px;
+            left: 10px;
+            z-index: 2;
+            
+          }
+    
+          .translate-panel{
+    
+            display: flex;
+            justify-content: space-around;
+            color: #ec1c24;
+            font-size: 1.2em;
+            margin: 2px;
+            flex-wrap: wrap;
+  
+          }
+    
+          .hide{
+            display: none;
+          }
+        }
+        
+    
+      }
+      .diff{
+        height: 500px;
+        width: 30%;
+      }
+    }
+
+.difficult{
+  min-height: 70vh;
+}
+.pagination{
+  display: flex;
+  width: 100%;
+  // margin-top: 36px;
+  // margin-left: 49vw;
+  font-size: 1.5em;
+  position: sticky;
+  background-color: $sticky-pagination;
+  bottom:0;
+  justify-content: center;
+  z-index: 3;
+
+  button{
+    height: 40px;
+    background-color: #b0a2f9;
+    border-radius: 6px;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding-bottom: 10px;
+    margin: 10px;
+    border: none;
+
+
+  }
+  .train{
+    position: absolute;
+    right: 20vw;
+    font-size: 0.9em;
+    width: 9vw;
+    background-color:  #b0a2f9;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+
+  }
+
+  .play-games{
+    display: none;
+    position: absolute;
+    right: 5vw;
+    width: 13vw;
+
+    button{
+      width: 55px;
+      height: 55px;
+      background-color: white;
+      border-radius: 50%;
+      font-size: 0.5em;
+    }
+  }
+}
+
+.active{
+  background-image: url(../src/images/active.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.no-difficulties{
+  font-size: 1.8em;
+  color: white;
+  margin-top: 50px; 
+}
+
+.learnt{
+  border: 5px solid $amber-sae-ece;
+}

@@ -1,0 +1,242 @@
+//sprint level Page
+.choice__block{
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.choice__block-description{
+    color: #ff7d00ff;
+    background-color: #001524ff;
+    font-size: 20px;
+}
+
+.choice__block-title{
+    color: #ff7d00ff;
+    background-color: #001524ff;
+    font-size: 20px;
+    text-align: center;
+}
+
+.choice__block-buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .choice__block-button{
+        width: 7rem;
+        height: 3rem;
+        border-radius: 5px;
+        font-size: 18px;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        &:active{
+            opacity: 0.6;
+        }
+    }
+}
+
+.button__1{
+    background-color: rgb(4, 255, 4);
+}
+.button__2{
+    background-color: rgb(176, 248, 10);
+}
+.button__3{
+    background-color: rgb(250, 230, 9);
+}
+.button__4{
+    background-color: rgb(238, 169, 5);
+}
+.button__5{
+    background-color: rgb(212, 87, 9);
+}
+.button__6{
+    background-color: red;
+}
+//sprint
+.card{
+    margin: 0 auto;
+    width: 800px;
+}
+.card__sprint-title{
+    margin: 10px;
+    font-size: x-large;
+    text-align: center;
+    color: #ff7d00ff;
+}
+.card{
+    background-color: rgb(233, 245, 215);
+}
+.sprint-top{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    .block-timer,
+    .block-result{
+        width: 4rem;
+        height: 4rem;
+        margin-top: 15px;
+        border-radius: 2rem;
+        font-size: 18px;
+        background-color: rgb(118, 194, 248);
+        text-align: center;
+        border: 1.5px solid black;
+        .time,
+        .result__score{
+            margin-top: 5px;
+        }
+    }
+    .block-result{
+        background-color: rgb(227, 249, 31);
+
+    }
+}
+
+.card-circle-block{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .block-point-svg{
+        svg{
+            width: 40px;
+        }
+    }
+}
+
+.card-body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    .card-title{
+        font-size: xx-large;
+        margin: 10px;
+        margin-bottom: 0px;
+
+    }
+    .card-text{
+        font-size: large;
+        margin-bottom: 15px;
+    }
+}
+
+#sound-image{
+    width: 25px;
+    &:hover{
+        transform: scale(1.2);
+        cursor: pointer;
+    }
+}
+
+
+.btn-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 50vw;
+    .btn-left,
+    .btn-right {
+        width: 15rem;
+        height: 3rem;
+        border-radius: 5px;
+        font-size: 18px;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+        &:active{
+            opacity: 0.6;
+        }
+    }
+}
+
+.btn-left{
+    background-color: red;
+}
+.btn-right{
+    background-color: rgb(4, 255, 4);
+}
+
+.opacity{
+    opacity: 0;
+}
+.results-img,
+.boolenImage{
+width: 15px;
+height: 15px;
+
+}
+.card-bodys{
+    margin: 20px;
+}
+
+.sprint-results{
+    max-height: 50vh;
+    overflow: auto;
+}
+
+.sprint-results-item,
+.result-item-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.sprint-results-item{
+    &:nth-child(2n+1){
+        background-color: antiquewhite;
+    }
+}
+
+.result-item-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 500px;
+
+    .engWord{
+        width: 150px;
+    }
+    .transr{
+        width: 120px;
+    }
+    .rusWords{
+        width: 150px;
+    }
+}
+.card__title-score{
+    font-size: xx-large;
+    text-align: center;
+}
+.close-sprint,
+.close-sprint-back{
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: 20px;
+    top: 20px;
+    font-size: 15px;
+    text-align: center;
+    background: red;
+    cursor: pointer;
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.2);
+    }
+    &:active{
+        opacity: 0.6;
+    }
+}
+
+.close-sprint-back{
+    right: 50px;
+    background: rgb(169, 253, 96);
+}
+/* .main__root{
+    overflow: scroll;
+} */
