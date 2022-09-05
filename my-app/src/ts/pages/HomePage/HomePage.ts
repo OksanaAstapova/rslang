@@ -24,6 +24,9 @@ class HomePage extends Page {
     conteinerHomePage.appendChild(conteinerInner);
     conteinerHomePage.appendChild(homePageImage);
 
+    const login  = document.querySelector('.login__conteiner') as HTMLElement;
+    login.style.display = 'flex';
+
     this.login();
     return conteinerHomePage;
   }

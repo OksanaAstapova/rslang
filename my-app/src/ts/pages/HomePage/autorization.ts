@@ -72,13 +72,24 @@ export const loginUser = () => {
 
 }
 
+export const logOutUser = () => {
+  const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
+  const loginName = document.querySelector(".autorization-name") as HTMLElement;
+  
+  containerLogin.style.display = 'flex';
+  loginName.innerHTML = '';
+
+  localStorage.clear();
+}
+window.logOutUser = logOutUser;
+
 export const displayUserLogin = (name: string) =>{
   const wrapperLogin = document.querySelector(".wrapper__login") as HTMLElement;
   const containerLogin = document.querySelector(".login__conteiner") as HTMLButtonElement;
   const loginName = document.querySelector(".autorization-name") as HTMLElement;
 
-  wrapperLogin.style.display = 'none';
+   wrapperLogin.classList.add('display-none');
   containerLogin.style.display = 'none';
-  loginName.innerHTML =`Hello, ${name}!`
+  loginName.innerHTML =`<p>Hello, ${name}!</p><div class= "log-out" onclick='logOutUser()'></div>`
 }
 

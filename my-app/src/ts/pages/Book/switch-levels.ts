@@ -23,6 +23,10 @@ declare global {
   interface Window {
     removeDifficult: any;
   }
+
+  interface Window {
+    logOutUser: any;
+  }
 }
 
 export const switchLevels = () => {

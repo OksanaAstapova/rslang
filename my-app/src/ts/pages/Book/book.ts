@@ -8,8 +8,12 @@ class BookPage extends Page {
     root.innerHTML = "";
 
     createBookContent();
+    const login  = document.querySelector('.login__conteiner') as HTMLElement;
+   
+    login.style.display = 'none';
 
     document.body.className = "body";
+    console.log(login)
     return new Component("h1", "book-title", "\n Book").node;
   }
 }
